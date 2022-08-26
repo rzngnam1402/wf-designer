@@ -3,7 +3,7 @@ import { useState } from "react";
 import './toolBox.css'
 import ToolBoxItem from "./toolBoxItem";
 
-
+// Initialize 5 variables include title and item in toolbox via object
 const ListContainers =
 {
     title: {
@@ -96,6 +96,11 @@ const ListTemplates =
 
 
 function ToolBox() {
+    // ------------------------------------------------------
+    // Return 5 title list item in toolbox
+    // Use to toggle function to create hidden effects
+    // ------------------------------------------------------
+
     const [showContainers, setShowContainers] = useState(false)
     const [showCollections, setShowCollections] = useState(false)
     const [showControls, setShowControls] = useState(false)

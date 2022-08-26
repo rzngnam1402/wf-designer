@@ -1,8 +1,8 @@
+// Functions used to handle event drag and drop
 
 
-export const handleDragStart = (e, id, element) => {
+export const handleDragStart = (e) => {
     const dropZones = [...document.getElementsByClassName('dropZone')]
-    console.log(dropZones);
     dropZones.forEach((dropZone) => {
         dropZone.classList.add('dragStart');
     })
