@@ -11,7 +11,6 @@ function FormBuilder() {
         <div className='FormBuilderContainer'>
             <FormBuilderContent />
             <ToolBox />
-            {/* {console.log('Re-render')} */}
         </div>
     )
 }

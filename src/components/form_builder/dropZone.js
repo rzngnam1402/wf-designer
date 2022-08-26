@@ -16,14 +16,16 @@ function DropZone() {
 
     const [checkDrop, setCheckDrop] = useState()
     const [checkOver, setCheckOver] = useState()
-    const [nodeCurrent, setNodeCurrent] = useState(false)
     const [idNodeInsert, setIdNodeInsert] = useState([])
 
     const DropZoneContent = useContext(IdItemInsertContext)
 
     useEffect(() => {
-        (checkDrop === checkOver && checkDrop !== undefined) ? setNodeCurrent(true) : setNodeCurrent(false)
-    }, [nodeCurrent])
+        (checkDrop === checkOver && checkDrop !== undefined) && setIdNodeInsert((prev) => {
+            setCheckDrop('')
+            return [DropZoneContent.id, ...prev]
+        })
+    }, [checkDrop])
 
     return (
         <>
@@ -34,7 +36,6 @@ function DropZone() {
                     setCheckOver(e.target)
                 }}
                 onDrop={(e) => {
-                    setNodeCurrent(e.target)
                     setCheckDrop(e.target)
                 }}
                 onDragLeave={(e) => {
@@ -44,7 +45,9 @@ function DropZone() {
             >
                 DROP ZONE
             </div>
-            {nodeCurrent && setIdNodeInsert()}
+            {idNodeInsert.map((node, index) => {
+                return <ItemContent key={index} id={node} />
+            })}
         </>
     )
 }

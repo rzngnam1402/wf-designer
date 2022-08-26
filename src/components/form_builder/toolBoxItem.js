@@ -27,7 +27,10 @@ function ToolBoxItem({ listItem }) {
                                 }
                             }
                             onDragEnd={
-                                (e) => (handleDragEnd(e))
+                                (e) => {
+                                    handleDragEnd(e)
+                                    ItemBoxContent.setValueId('')
+                                }
                             }
                         > {item.content}</li>
                     )
