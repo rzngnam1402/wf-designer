@@ -1,11 +1,13 @@
 import DropZone from "./dropZone"
 import './formBuilderContent.css'
 
+
 function FormBuilderContent() {
     return (
-        <>
+        <div className="formBuiderContent_Container">
             <DropZone />
-        </>
+            <DropZone />
+        </div>
     )
 }
 

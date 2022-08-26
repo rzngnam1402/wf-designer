@@ -1,24 +1,32 @@
 .dropZone {
-    width: 300px;
-    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 10px;
+    color: rgba(46, 46, 46, 0.4);
+    width: 100%;
+
+    padding: 8px;
+    margin-bottom: 16px;
+
+    border: 1px dashed rgba(0, 0, 0, 0.1);
+    ;
 }
 
 .notDrag {
-    background-color: brown;
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
 .dragStart {
-    background-color: aqua;
+    opacity: 0.5;
+    background-color: #E1E9F6;
+    border: 1px dashed #1261E2;
 }
 
 .dragOver {
-    background-color: blueviolet;
-}
-
-.dragEnd {
-    background-color: chartreuse;
-}
-
-.drop {
-    background-color: black;
+    opacity: 1;
+    background-color: #E1E9F6;
+    border: 1px dashed #1261E2;
 }

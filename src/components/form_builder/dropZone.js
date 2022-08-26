@@ -2,7 +2,8 @@ import { useState } from 'react'
 
 
 import './dropZone.css'
-import { handleDragOver, handleDrop } from './DragAndDrop'
+import { handleDragLeave, handleDragOver, handleDrop } from './DragAndDrop'
+import ItemContent from './ItemContent'
 
 
 function DropZone() {
@@ -19,10 +20,18 @@ function DropZone() {
             onDrop={(e) => {
                 handleDrop(e)
                 setCheckDrop(e.target)
+                console.log('Please action');
+                console.log(checkDrop);
             }}
-            onDragLeave={() => { setCheckOver('') }}
+            onDragLeave={(e) => {
+                handleDragLeave(e)
+                setCheckOver('')
+            }}
         >
-            {(checkDrop === checkOver) ? console.log('Dung roi') : console.log('Sai roi')}
+            {console.log("Render")}
+            {console.log(checkDrop)}
+            {/* {(checkDrop === checkOver && checkDrop !== '') ? console.log('Dung roi') : console.log('Sai roi')} */}
+            DROP ZONE
         </div>
     )
 }
