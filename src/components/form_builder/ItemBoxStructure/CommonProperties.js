@@ -1,22 +1,24 @@
-
+import React from 'react'
 import { Modal } from 'semantic-ui-react'
 
-function CommonProperties() {
+import PropertiesTables from './PropertiesTables'
+
+
+function ModalExampleDimmer() {
+    // -----------------------------------------------------------------------------------
+    // Return Modal and surround properties tables
+    // -----------------------------------------------------------------------------------
+
     return (
         <div>
             <Modal
-                dimmer="Inverted"
+                dimmer='inverted'
+                open={true}
             >
-                <Modal.Header>Use Google's location service?</Modal.Header>
-                <Modal.Content>
-                    Let Google help apps determine location. This means sending anonymous
-                    location data to Google, even when no apps are running.
-                </Modal.Content>
-                <Modal.Actions>
-                    Day la ben trong modal
-                </Modal.Actions>
+                <PropertiesTables />
             </Modal>
         </div>
     )
 }
-export default CommonProperties
+
+export default ModalExampleDimmer

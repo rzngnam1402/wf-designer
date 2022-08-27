@@ -38,8 +38,8 @@ export const handleDragEnd = (e) => {
     })
 }
 
-export const handleDrop = (e) => {
-    e.preventDefault();
+// export const handleDrop = (e) => {
+//     e.preventDefault();
     // const dropZone = document.getElementsByClassName('dropZone')[0]
     // dropZone.classList.add('dragDrop');
-}
+// }
