@@ -1,11 +1,6 @@
 .Modal_inside {
-    background-color: white;
-    border-radius: 4px;
-    width: 900px;
-    box-shadow: 1px 3px 10px 2px rgb(0 0 0 / 20%);
     padding: 21px;
-    /* Phai sua height: auto */
-    height: 500px
+    height: auto
 }
 
 .Modal_inside_container {
@@ -16,4 +11,9 @@
     position: absolute;
     top: 0;
     right: 0;
+}
+
+.Modal_inside_action {
+    text-align: right;
+    padding: 15px;
 }

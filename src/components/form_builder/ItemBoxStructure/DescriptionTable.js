@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import { Menu } from 'semantic-ui-react'
 
+import LayoutProperties from './LayoutProperties'
+
 function DescriptionTable() {
     const [activeItem, setActiveItem] = useState('General')
 
     return (
-        <>
+        <div className='Properties_Table'>
             <Menu pointing secondary>
                 <Menu.Item
 
@@ -35,8 +37,8 @@ function DescriptionTable() {
                 />
             </Menu>
 
-
-        </>
+            <LayoutProperties nameTab={activeItem} />
+        </div>
     )
 }
 
