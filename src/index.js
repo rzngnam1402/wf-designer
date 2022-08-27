@@ -8,6 +8,8 @@ import { IdItemProvider } from './components/form_builder/idItemProder';
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 //  Import FontAwesome 5 
+import 'semantic-ui-css/semantic.min.css'
+// Import Semantic UI React
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

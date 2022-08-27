@@ -1,0 +1,33 @@
+.toolBarHeader_container {
+    position: relative;
+    top: 0px;
+    left: 0;
+    right: auto;
+    color: rgba(0, 0, 0, .87);
+    line-height: 25px;
+    font-size: 14px;
+    height: 25px;
+    width: auto;
+    padding: 0 5px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    background-color: white;
+}
+
+.toolBarHeader_title {
+    font-weight: 400;
+    line-height: 20px;
+    margin-right: 20px;
+    height: auto;
+    width: auto;
+    text-align: left;
+    cursor: default;
+}
+
+.toolBarHeader_container>i {
+    width: auto;
+    height: auto;
+    margin: 0 8px 0 0;
+    cursor: pointer;
+}

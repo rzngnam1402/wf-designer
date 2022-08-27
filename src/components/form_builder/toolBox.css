@@ -24,7 +24,7 @@ ul {
     color: white;
     overflow-y: scroll;
     height: 100vh !important;
-    width: 220px;
+    min-width: 220px;
     float: right;
     font-size: 14px;
     line-height: 20px;

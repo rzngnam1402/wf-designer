@@ -1,4 +1,12 @@
+// ---------------------------------------------------------------------------
 // Functions used to handle event drag and drop
+// HandleDragStart: Xu ly khi event: Drag Start
+// HandleDragOver: Xu ly khi event: Drag Over
+// HandleDragLeave: Xu ly khi event: Drag Leave
+// HandleDragEnd: Xu ly khi event: Drag End
+// HandleDrop: Xu ly khi event: Drop
+// ---------------------------------------------------------------------------
+
 
 
 export const handleDragStart = (e) => {
