@@ -7,7 +7,6 @@ function App() {
     <>
       <ConditionForm />
       <Flow />
-      <div>Tao dang o develop - condition</div>
     </>
 
   )
