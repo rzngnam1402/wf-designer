@@ -1,8 +1,7 @@
 import './formBuilder.css'
-// import FormBuilderContent from './formBuilderContent'
-// import ToolBox from './toolBox'
+import FormBuilderContent from './formBuilderContent'
+import ToolBox from './toolBox'
 
-// import ToolBarHeader from './ItemBoxStructure/toolBarHeader'
 import ModalExampleDimmer from './ItemBoxStructure/CommonProperties'
 
 
@@ -12,12 +11,13 @@ function FormBuilder() {
     // -----------------------------------------------------------
     return (
         <>
-            {/* <div className='FormBuilderContainer'>
-                <FormBuilderContent />
+            <div className='FormBuilderContainer'>
+                <div>
+                    <FormBuilderContent />
+                </div>
                 <ToolBox />
-            </div> */}
+            </div>
             <div className='Test'>
-                {/* <ToolBarHeader /> */}
                 <ModalExampleDimmer />
             </div>
         </>

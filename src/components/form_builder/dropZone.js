@@ -12,7 +12,8 @@ import { useContext } from "react";
 function DropZone() {
     // --------------------------------------------------------
     // Return Dropzone where can drop itemBox component
-    // --------------------------------------------------------
+    // -------------------------------------------------------
+
 
     const [checkDrop, setCheckDrop] = useState()
     const [checkOver, setCheckOver] = useState()
@@ -46,7 +47,8 @@ function DropZone() {
                 DROP ZONE
             </div>
             {idNodeInsert.map((node, index) => {
-                return <ItemContent key={index} id={node} />
+
+                return <ItemContent key={index} id={node} name={index} />
             })}
         </>
     )

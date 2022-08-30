@@ -9,7 +9,6 @@ function FormBuilderContent() {
     return (
         <div className="formBuiderContent_Container">
             <DropZone />
-            <DropZone />
         </div>
     )
 }

@@ -1,8 +1,8 @@
+/* toolBarHeader CSS */
 .toolBarHeader_container {
-    position: relative;
-    top: 0px;
-    left: 0;
-    right: auto;
+    position: absolute;
+    top: -30px;
+    right: 0;
     color: rgba(0, 0, 0, .87);
     line-height: 25px;
     font-size: 14px;
@@ -13,12 +13,19 @@
     display: inline-flex;
     align-items: center;
     background-color: white;
+    opacity: 0.2;
+}
+
+.toolBarHeader_container:hover {
+    opacity: 1;
+    box-shadow: 0px 6px 10px rgb(18 83 204 / 12%), 0px 1px 18px rgb(18 83 204 / 12%), 0px 3px 5px rgb(18 83 204 / 15%);
 }
 
 .toolBarHeader_title {
     font-weight: 400;
     line-height: 20px;
     margin-right: 20px;
+    margin-left: 10px;
     height: auto;
     width: auto;
     text-align: left;
@@ -30,4 +37,8 @@
     height: auto;
     margin: 0 8px 0 0;
     cursor: pointer;
+}
+
+.handleMouse {
+    outline: 1px solid orangered;
 }
