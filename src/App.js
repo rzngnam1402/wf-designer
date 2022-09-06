@@ -67,7 +67,7 @@ function Flow() {
       },
     };
     reactFlowInstance.addNodes(newNode);
-  }, []);
+  }, [reactFlowInstance]);
 
   return (
     <div className="canvas_container">
