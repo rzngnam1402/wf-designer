@@ -1,7 +1,8 @@
 import { useCallback, useState } from 'react';
 import ReactFlow, {
   addEdge, applyEdgeChanges, applyNodeChanges,
-  useReactFlow, ReactFlowProvider
+  useReactFlow, ReactFlowProvider,
+  Controls
 } from 'react-flow-renderer';
 
 import TextUpdaterNode from './components/reactflow/textUpdaterNode';
@@ -16,25 +17,11 @@ const rfStyle = {
 
 const initialNodes = [
   { id: 'node-1', type: 'textUpdater', position: { x: -100, y: 100 }, data: { value: 123 } },
-  {
-    id: 'node-2',
-    type: 'output',
-    targetPosition: 'left',
-    position: { x: 250, y: 0 },
-    data: { label: 'node 2' },
-  },
-  {
-    id: 'node-3',
-    type: 'output',
-    targetPosition: 'left',
-    position: { x: 250, y: 200 },
-    data: { label: 'node 3' },
-  },
 ];
 
 const nodeTypes = { textUpdater: TextUpdaterNode };
 
-let nodeId = 3;
+let nodeId = 1;
 
 function Flow() {
   const [nodes, setNodes] = useState(initialNodes);
@@ -54,7 +41,7 @@ function Flow() {
   );
 
   const reactFlowInstance = useReactFlow();
-  const onClickHandler = useCallback(() => {
+  const onClickHandler = useCallback((type) => {
     const id = `${++nodeId}`;
     const newNode = {
       id,
@@ -62,18 +49,31 @@ function Flow() {
         x: Math.random() * 200,
         y: Math.random() * 200,
       },
+      sourcePosition: 'right',
+      targetPosition: 'left',
       data: {
-        label: `Node ${id}`,
+        label: `${type}`,
       },
+
     };
     reactFlowInstance.addNodes(newNode);
-  }, []);
+  }, [reactFlowInstance]);
+
+  let isDraggable = false;
 
   return (
     <div className="canvas_container">
-      <button onClick={onClickHandler} className="btn-add">
-        Add node
-      </button>
+      <div className='btn_container'>
+        <button onClick={() => onClickHandler('CEO')} className="btn-add">
+          Add CEO node
+        </button>
+        <button onClick={() => onClickHandler('CTO')} className="btn-add">
+          Add CTO node
+        </button>
+        <button onClick={() => onClickHandler('BO')} className="btn-add">
+          Add BO node
+        </button>
+      </div>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -84,6 +84,7 @@ function Flow() {
         fitView
         style={rfStyle}
       />
+      <Controls />
     </div >
   );
 }

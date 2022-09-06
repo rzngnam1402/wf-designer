@@ -4,10 +4,19 @@
     border: 1px solid black;
 }
 
+.btn_container {
+    position: absolute;
+    z-index: 9;
+}
+
 .btn-add {
     padding: 5px;
     border: 1px solid silver;
     border-radius: 50px;
-    position: absolute;
-    z-index: 9;
+    margin: 20px;
+}
+
+.btn-add:hover {
+    opacity: 0.9;
+    cursor: pointer;
 }
