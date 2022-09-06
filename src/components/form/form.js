@@ -25,7 +25,7 @@ const ConditionForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(inputFields);
-        inputFields.map(inputFields =>  { console.log(`${inputFields.parameters} ${inputFields.operators} ${inputFields.value}`) }
+        inputFields.forEach(inputFields => { console.log(`${inputFields.parameters} ${inputFields.operators} ${inputFields.value}`) }
         )
     }
 
