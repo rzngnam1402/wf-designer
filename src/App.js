@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import ReactFlow, { addEdge, applyEdgeChanges, applyNodeChanges } from 'react-flow-renderer';
+import ReactFlow, { addEdge, applyEdgeChanges, applyNodeChanges, useReactFlow, ReactFlowProvider } from 'react-flow-renderer';
 
 import TextUpdaterNode from './components/reactflow/textUpdaterNode';
 
@@ -31,6 +31,8 @@ const initialNodes = [
 
 const nodeTypes = { textUpdater: TextUpdaterNode };
 
+let nodeId = 3;
+
 function Flow() {
   const [nodes, setNodes] = useState(initialNodes);
   const [edges, setEdges] = useState([]);
@@ -48,8 +50,27 @@ function Flow() {
     [setEdges]
   );
 
+  const reactFlowInstance = useReactFlow();
+  const onClickHandler = useCallback(() => {
+    const id = `${++nodeId}`;
+    const newNode = {
+      id,
+      position: {
+        x: Math.random() * 200,
+        y: Math.random() * 200,
+      },
+      data: {
+        label: `Node ${id}`,
+      },
+    };
+    reactFlowInstance.addNodes(newNode);
+  }, []);
+
   return (
     <div className="canvas_container">
+      <button onClick={onClickHandler} className="btn-add">
+        Add node
+      </button>
       <ReactFlow
         nodes={nodes}
         edges={edges}
@@ -60,8 +81,14 @@ function Flow() {
         fitView
         style={rfStyle}
       />
-    </div>
+    </div >
   );
 }
 
-export default Flow;
+export default function App() {
+  return (
+    <ReactFlowProvider>
+      <Flow />
+    </ReactFlowProvider>
+  );
+}

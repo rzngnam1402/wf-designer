@@ -3,3 +3,11 @@
     height: 100vh;
     border: 1px solid black;
 }
+
+.btn-add {
+    padding: 5px;
+    border: 1px solid silver;
+    border-radius: 50px;
+    position: absolute;
+    z-index: 9;
+}
