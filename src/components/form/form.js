@@ -25,8 +25,6 @@ const ConditionForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(inputFields);
-        inputFields.forEach(inputFields => { console.log(`${inputFields.parameters} ${inputFields.operators} ${inputFields.value}`) }
-        )
     }
 
     return (

@@ -1,7 +1,13 @@
-body {
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
+.canvas_container {
+    width: 100%;
     height: 100vh;
+    border: 1px solid black;
+}
+
+.btn-add {
+    padding: 5px;
+    border: 1px solid silver;
+    border-radius: 50px;
+    position: absolute;
+    z-index: 9;
 }
