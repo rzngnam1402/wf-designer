@@ -25,7 +25,6 @@ const ConditionForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(inputFields);
-
     }
 
     return (
