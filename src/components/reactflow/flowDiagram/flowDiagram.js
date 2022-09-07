@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import ReactFlow, {
     addEdge, applyEdgeChanges, applyNodeChanges,
-    useReactFlow, ReactFlowProvider,
+    useReactFlow,
     Controls
 } from 'react-flow-renderer';
 
@@ -60,7 +60,7 @@ function Flow() {
 
     const exportHandler = useCallback(() => {
         console.log(reactFlowInstance.toObject());
-    }, []);
+    }, [reactFlowInstance]);
 
     return (
         <div className="canvas_container">
