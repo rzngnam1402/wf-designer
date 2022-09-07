@@ -9,7 +9,7 @@ function TextUpdaterNode({ data }) {
     return (
         <div className="text-updater-node">
             <div>
-                <label htmlFor="text">Text:</label>
+                <label htmlFor="text">Expression:</label>
                 <input id="text" name="text" onChange={onChange} />
             </div>
             <Handle type="source" position={Position.Right} id="b" />

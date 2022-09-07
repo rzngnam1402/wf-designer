@@ -16,7 +16,7 @@ const rfStyle = {
 };
 
 const initialNodes = [
-  { id: 'node-1', type: 'textUpdater', position: { x: -100, y: 100 }, data: { value: 123 } },
+  { id: 'node-1', type: 'textUpdater', position: { x: -100, y: 100 } },
 ];
 
 const nodeTypes = { textUpdater: TextUpdaterNode };
@@ -41,7 +41,7 @@ function Flow() {
   );
 
   const reactFlowInstance = useReactFlow();
-  const onClickHandler = useCallback((type) => {
+  const addNodeHandler = useCallback((type) => {
     const id = `${++nodeId}`;
     const newNode = {
       id,
@@ -59,19 +59,24 @@ function Flow() {
     reactFlowInstance.addNodes(newNode);
   }, [reactFlowInstance]);
 
-  let isDraggable = false;
+  const exportHandler = useCallback(() => {
+    console.log(reactFlowInstance.toObject());
+  }, []);
 
   return (
     <div className="canvas_container">
       <div className='btn_container'>
-        <button onClick={() => onClickHandler('CEO')} className="btn-add">
+        <button onClick={() => addNodeHandler('CEO')} className="btn-add">
           Add CEO node
         </button>
-        <button onClick={() => onClickHandler('CTO')} className="btn-add">
+        <button onClick={() => addNodeHandler('CTO')} className="btn-add">
           Add CTO node
         </button>
-        <button onClick={() => onClickHandler('BO')} className="btn-add">
+        <button onClick={() => addNodeHandler('BO')} className="btn-add">
           Add BO node
+        </button>
+        <button onClick={exportHandler} className='btn-add'>
+          Export Graph to Json
         </button>
       </div>
       <ReactFlow
