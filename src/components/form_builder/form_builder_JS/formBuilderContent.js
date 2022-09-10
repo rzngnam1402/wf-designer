@@ -1,5 +1,5 @@
 import DropZone from "./dropZone"
-import './formBuilderContent.css'
+import '../form_builder_CSS/formBuilderContent.css'
 
 
 function FormBuilderContent() {

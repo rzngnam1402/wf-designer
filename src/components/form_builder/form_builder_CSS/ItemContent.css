@@ -1,8 +1,9 @@
-.ItemContent_container {
+.ItemContent_containers,
+.ItemContent_Controls {
     position: relative;
 }
 
-.ItemContent {
+.ItemContent_container {
     width: 100%;
     opacity: 1;
     text-align: center;
