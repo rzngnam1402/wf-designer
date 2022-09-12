@@ -22,6 +22,7 @@ const initialNodes = [
 const nodeTypes = { textUpdater: TextUpdaterNode };
 
 let nodeId = 1;
+let expressionId = 1;
 
 function Flow() {
     const [nodes, setNodes] = useState(initialNodes);
@@ -41,7 +42,7 @@ function Flow() {
     );
 
     const reactFlowInstance = useReactFlow();
-    const addNodeHandler = useCallback((type) => {
+    const addNodeHandler = useCallback((name) => {
         const id = `${++nodeId}`;
         const newNode = {
             id,
@@ -52,9 +53,19 @@ function Flow() {
             sourcePosition: 'right',
             targetPosition: 'left',
             data: {
-                label: `${type}`,
+                label: `${name}`,
             },
         };
+        reactFlowInstance.addNodes(newNode);
+    }, [reactFlowInstance]);
+
+    const addExpressionHandler = useCallback(() => {
+        const id = `${++expressionId}`;
+        const newNode = {
+            id: `expression-${id}`,
+            type: 'textUpdater',
+            position: { x: -100, y: 100 * id }
+        }
         reactFlowInstance.addNodes(newNode);
     }, [reactFlowInstance]);
 
@@ -65,6 +76,9 @@ function Flow() {
     return (
         <div className="canvas_container">
             <div className='btn_container'>
+                <button onClick={() => addExpressionHandler()} className="btn-add">
+                    Add Expression node
+                </button>
                 <button onClick={() => addNodeHandler('CEO')} className="btn-add">
                     Add CEO node
                 </button>
