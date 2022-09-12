@@ -1,0 +1,9 @@
+.WrapOption {
+  display: flex !important;
+  flex-wrap: wrap;
+}
+
+.WrapOption > div {
+  margin-bottom: 10px !important;
+  min-width: 130px;
+}

@@ -1,15 +1,17 @@
 import { useContext } from "react";
 
-import "../ItemBoxStructure_CSS/toolBarHeader.css";
+import "../TableStructure_CSS/toolBarHeader.css";
 import { checkModal } from "../../form_builder_Provider/idItemProvider";
 import { itemDelete } from "../../form_builder_Provider/idItemProvider";
+import { itemToolboxGeneral } from "../../form_builder_Provider/idItemProvider";
 
 function ToolBarHeader(props) {
+  // render toolbar of each component inside form is properties modifier
   const ModifiedProperties = useContext(checkModal);
   const ItemDelete = useContext(itemDelete);
+  const ToolboxGeneral = useContext(itemToolboxGeneral);
 
   const DeleteST = () => {
-    console.log("Click Trash");
     ItemDelete.SetValueOrder(orderNumber);
   };
 
@@ -23,6 +25,7 @@ function ToolBarHeader(props) {
         className="fa-solid fa-pen-to-square"
         onClick={() => {
           ModifiedProperties.setValueToggleModal(true);
+          ToolboxGeneral.SetValueNameToolbox(props.nameItemToolbox);
         }}
       ></i>
       <i className="fa-solid fa-copy"></i>

@@ -11,7 +11,7 @@ import {
 } from "semantic-ui-react";
 
 import "../form_builder_CSS/ItemContent.css";
-import ToolBarHeader from "../ItemBoxStructure/ItemBoxStructure_JS/toolBarHeader";
+import ToolBarHeader from "../TableStructure/TableStructure_JS/toolBarHeader";
 import DropZone from "./dropZone";
 
 function ItemContent(props) {
@@ -56,7 +56,10 @@ function ItemContent(props) {
             <div className="ItemContent_container">
               <DropZone />
             </div>
-            <ToolBarHeader orderNumber={props.orderNumber} />
+            <ToolBarHeader
+              orderNumber={props.orderNumber}
+              nameItemToolbox="Container"
+            />
           </div>
           <div>
             <DropZone />
@@ -170,7 +173,10 @@ function ItemContent(props) {
             <div className="ItemContent_Header">
               <Header size="large">Header</Header>
             </div>
-            <ToolBarHeader orderNumber={props.orderNumber} />
+            <ToolBarHeader
+              orderNumber={props.orderNumber}
+              nameItemToolbox="Header"
+            />
           </div>
           <div>
             <DropZone />
@@ -185,7 +191,10 @@ function ItemContent(props) {
               <Label>Input</Label>
               <Input value="" fluid />
             </div>
-            <ToolBarHeader orderNumber={props.orderNumber} />
+            <ToolBarHeader
+              orderNumber={props.orderNumber}
+              nameItemToolbox="Input"
+            />
           </div>
           <div>
             <DropZone />
@@ -200,7 +209,10 @@ function ItemContent(props) {
               <Label>NumberFormat</Label>
               <Input value="" fluid />
             </div>
-            <ToolBarHeader orderNumber={props.orderNumber} />
+            <ToolBarHeader
+              orderNumber={props.orderNumber}
+              nameItemToolbox="NumberFormat"
+            />
           </div>
           <div>
             <DropZone />
@@ -217,7 +229,10 @@ function ItemContent(props) {
                 <TextArea value="" />
               </Form>
             </div>
-            <ToolBarHeader orderNumber={props.orderNumber} />
+            <ToolBarHeader
+              orderNumber={props.orderNumber}
+              nameItemToolbox="TextArea"
+            />
           </div>
           <div>
             <DropZone />
@@ -232,7 +247,10 @@ function ItemContent(props) {
               <Label>Dictionary</Label>
               <Input value="" fluid />
             </div>
-            <ToolBarHeader orderNumber={props.orderNumber} />
+            <ToolBarHeader
+              orderNumber={props.orderNumber}
+              nameItemToolbox="Dictionary"
+            />
           </div>
           <div>
             <DropZone />
@@ -246,7 +264,10 @@ function ItemContent(props) {
             <div className="ItemContent_TreePicker">
               <Label>TreePicker</Label>
             </div>
-            <ToolBarHeader orderNumber={props.orderNumber} />
+            <ToolBarHeader
+              orderNumber={props.orderNumber}
+              nameItemToolbox="TreePicker"
+            />
           </div>
           <div>
             <DropZone />
@@ -261,7 +282,10 @@ function ItemContent(props) {
               <Label>Dropdown</Label>
               <Dropdown fluid selection options={sampleOption} />
             </div>
-            <ToolBarHeader orderNumber={props.orderNumber} />
+            <ToolBarHeader
+              orderNumber={props.orderNumber}
+              nameItemToolbox="Dropdown"
+            />
           </div>
           <div>
             <DropZone />
@@ -278,7 +302,10 @@ function ItemContent(props) {
                 <Checkbox label="Check box" />
               </div>
             </div>
-            <ToolBarHeader orderNumber={props.orderNumber} />
+            <ToolBarHeader
+              orderNumber={props.orderNumber}
+              nameItemToolbox="Checkbox"
+            />
           </div>
           <div>
             <DropZone />
@@ -305,7 +332,10 @@ function ItemContent(props) {
                 </Form.Group>
               </Form>
             </div>
-            <ToolBarHeader orderNumber={props.orderNumber} />
+            <ToolBarHeader
+              orderNumber={props.orderNumber}
+              nameItemToolbox="RadioGroup"
+            />
           </div>
           <div>
             <DropZone />
@@ -322,7 +352,10 @@ function ItemContent(props) {
                 <Button primary>Button</Button>
               </div>
             </div>
-            <ToolBarHeader orderNumber={props.orderNumber} />
+            <ToolBarHeader
+              orderNumber={props.orderNumber}
+              nameItemToolbox="Button"
+            />
           </div>
           <div>
             <DropZone />
@@ -333,8 +366,13 @@ function ItemContent(props) {
       return (
         <>
           <div className="ItemContent_Controls">
-            <div className="ItemContent"></div>
-            <ToolBarHeader orderNumber={props.orderNumber} />
+            <div className="ItemContent_Label">
+              <Label>Label</Label>
+            </div>
+            <ToolBarHeader
+              orderNumber={props.orderNumber}
+              nameItemToolbox="Label"
+            />
           </div>
           <div>
             <DropZone />
@@ -417,8 +455,16 @@ function ItemContent(props) {
       return (
         <>
           <div className="ItemContent_Controls">
-            <div className="ItemContent"></div>
-            <ToolBarHeader orderNumber={props.orderNumber} />
+            <div className="ItemContent_Files">
+              <Label>Files</Label>
+              <div>
+                <input type="file" />
+              </div>
+            </div>
+            <ToolBarHeader
+              orderNumber={props.orderNumber}
+              nameItemToolbox="Files"
+            />
           </div>
           <div>
             <DropZone />

@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { Label, Button } from "semantic-ui-react";
 
-import "../ItemBoxStructure_CSS/PropertiesTables.css";
+import "../TableStructure_CSS/PropertiesTables.css";
 import DescriptionTable from "./DescriptionTable";
 import { checkModal } from "../../form_builder_Provider/idItemProvider";
 
 function PropertiesTables() {
+  // render table inside modal
   const ButtonToggleModal = useContext(checkModal);
 
   return (

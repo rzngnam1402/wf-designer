@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { Menu } from "semantic-ui-react";
 
-import LayoutProperties from "./LayoutProperties";
+import LayoutProperties from "./LayoutPropertiesSwitch";
 
 function DescriptionTable() {
+  // render 5 properties (nav controls) inside table
+  // Note: Use "Switch case" to render corresponding general with each component in form
   const [activeItem, setActiveItem] = useState("General");
 
   return (

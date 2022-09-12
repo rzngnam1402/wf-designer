@@ -94,7 +94,32 @@ function SetItemDelete({ children }) {
   );
 }
 
+// ---------------------------------------------------------------------
+// variable is used to count order number of item that will drop
+const itemToolboxGeneral = createContext();
+
+function SetItemToolboxGeneral({ children }) {
+  // featured Function is initialized when use useContext hook
+  const [nameToolbox, setNameToolbox] = useState();
+
+  const SetValueNameToolbox = (value) => {
+    setNameToolbox(value);
+  };
+
+  const ValueNameToolbox = {
+    nameToolbox,
+    SetValueNameToolbox,
+  };
+
+  return (
+    <itemToolboxGeneral.Provider value={ValueNameToolbox}>
+      {children}
+    </itemToolboxGeneral.Provider>
+  );
+}
+
 export { IdItemInsertContext, IdItemProvider };
 export { checkModal, ModalProperties };
 export { OderNumberitemDrop, SetOderNumber };
 export { itemDelete, SetItemDelete };
+export { itemToolboxGeneral, SetItemToolboxGeneral };

@@ -1,8 +1,8 @@
 import { Dropdown, Form, TextArea } from "semantic-ui-react";
 
-import "../TabProperties_CPN_CSS/General_additional_checkbox.css";
+import "../General_component_CSS/ChildContainerView_support.css";
 
-function GeneralExtraView({ ValueSelect }) {
+function ChildrenContainerView_support({ ValueSelect }) {
   const options = [
     { key: "1", text: "(Not set)", value: "(Not set)" },
     { key: "2", text: "Flex", value: "Flex" },
@@ -25,30 +25,18 @@ function GeneralExtraView({ ValueSelect }) {
   switch (ValueSelect) {
     case "None":
       return (
-        <>
-          <Form.Field>
-            <Form.Group widths="equal">
-              <Form.Field>
-                <label className="General_Extra_View_label">Dislay</label>
-                <Dropdown
-                  placeholder="State"
-                  fluid
-                  selection
-                  options={options}
-                />
-              </Form.Field>
-              <Form.Field>
-                <label className="General_Extra_View_label">Float</label>
-                <Dropdown
-                  placeholder="State"
-                  fluid
-                  selection
-                  options={options}
-                />
-              </Form.Field>
-            </Form.Group>
-          </Form.Field>
-        </>
+        <Form.Field>
+          <Form.Group widths="equal">
+            <Form.Field>
+              <label className="General_Extra_View_label">Dislay</label>
+              <Dropdown placeholder="State" fluid selection options={options} />
+            </Form.Field>
+            <Form.Field>
+              <label className="General_Extra_View_label">Float</label>
+              <Dropdown placeholder="State" fluid selection options={options} />
+            </Form.Field>
+          </Form.Group>
+        </Form.Field>
       );
 
     default:
@@ -69,4 +57,4 @@ paddingTop:5px;`}
   }
 }
 
-export default GeneralExtraView;
+export default ChildrenContainerView_support;

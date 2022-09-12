@@ -2,7 +2,7 @@ import "../form_builder_CSS/formBuilder.css";
 import FormBuilderContent from "./formBuilderContent";
 import ToolBox from "./toolBox";
 
-import ModalExampleDimmer from "../ItemBoxStructure/ItemBoxStructure_JS/Modal";
+import ModalExampleDimmer from "../TableStructure/TableStructure_JS/Modal";
 
 function FormBuilder() {
   // -----------------------------------------------------------
