@@ -12,7 +12,10 @@ function TextUpdaterNode({ data }) {
                 <label htmlFor="text">Expression:</label>
                 <input id="text" name="text" onChange={onChange} />
             </div>
+            <Handle type="source" position={Position.Top} id="a" />
             <Handle type="source" position={Position.Right} id="b" />
+            <Handle type="source" position={Position.Bottom} id="c" />
+            <Handle type="source" position={Position.Left} id="d" />
         </div>
     );
 }

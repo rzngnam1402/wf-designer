@@ -16,7 +16,11 @@ const rfStyle = {
 };
 
 const initialNodes = [
-    { id: 'expression-1', type: 'textUpdater', position: { x: -100, y: 100 } },
+    {
+        id: 'expression-1',
+        type: 'textUpdater',
+        position: { x: -100, y: 100 },
+    },
 ];
 
 const nodeTypes = { textUpdater: TextUpdaterNode };
@@ -64,7 +68,9 @@ function Flow() {
         const newNode = {
             id: `expression-${id}`,
             type: 'textUpdater',
-            position: { x: -100, y: 100 * id }
+            position: { x: -100, y: 100 * id },
+            sourcePosition: 'right',
+            targetPosition: 'left',
         }
         reactFlowInstance.addNodes(newNode);
     }, [reactFlowInstance]);
