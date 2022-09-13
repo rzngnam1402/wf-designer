@@ -61,9 +61,6 @@ function ItemContent(props) {
               nameItemToolbox="Container"
             />
           </div>
-          <div>
-            <DropZone />
-          </div>
         </>
       );
     // case '3':
@@ -178,9 +175,6 @@ function ItemContent(props) {
               nameItemToolbox="Header"
             />
           </div>
-          <div>
-            <DropZone />
-          </div>
         </>
       );
     case "16":
@@ -196,9 +190,6 @@ function ItemContent(props) {
               nameItemToolbox="Input"
             />
           </div>
-          <div>
-            <DropZone />
-          </div>
         </>
       );
     case "17":
@@ -213,9 +204,6 @@ function ItemContent(props) {
               orderNumber={props.orderNumber}
               nameItemToolbox="NumberFormat"
             />
-          </div>
-          <div>
-            <DropZone />
           </div>
         </>
       );
@@ -234,9 +222,6 @@ function ItemContent(props) {
               nameItemToolbox="TextArea"
             />
           </div>
-          <div>
-            <DropZone />
-          </div>
         </>
       );
     case "19":
@@ -252,9 +237,6 @@ function ItemContent(props) {
               nameItemToolbox="Dictionary"
             />
           </div>
-          <div>
-            <DropZone />
-          </div>
         </>
       );
     case "20":
@@ -268,9 +250,6 @@ function ItemContent(props) {
               orderNumber={props.orderNumber}
               nameItemToolbox="TreePicker"
             />
-          </div>
-          <div>
-            <DropZone />
           </div>
         </>
       );
@@ -286,9 +265,6 @@ function ItemContent(props) {
               orderNumber={props.orderNumber}
               nameItemToolbox="Dropdown"
             />
-          </div>
-          <div>
-            <DropZone />
           </div>
         </>
       );
@@ -306,9 +282,6 @@ function ItemContent(props) {
               orderNumber={props.orderNumber}
               nameItemToolbox="Checkbox"
             />
-          </div>
-          <div>
-            <DropZone />
           </div>
         </>
       );
@@ -337,9 +310,6 @@ function ItemContent(props) {
               nameItemToolbox="RadioGroup"
             />
           </div>
-          <div>
-            <DropZone />
-          </div>
         </>
       );
     case "24":
@@ -357,9 +327,6 @@ function ItemContent(props) {
               nameItemToolbox="Button"
             />
           </div>
-          <div>
-            <DropZone />
-          </div>
         </>
       );
     case "25":
@@ -374,9 +341,6 @@ function ItemContent(props) {
               nameItemToolbox="Label"
             />
           </div>
-          <div>
-            <DropZone />
-          </div>
         </>
       );
     case "26":
@@ -385,9 +349,6 @@ function ItemContent(props) {
           <div className="ItemContent_Controls">
             <div className="ItemContent"></div>
             <ToolBarHeader orderNumber={props.orderNumber} />
-          </div>
-          <div>
-            <DropZone />
           </div>
         </>
       );
@@ -398,9 +359,6 @@ function ItemContent(props) {
             <div className="ItemContent"></div>
             <ToolBarHeader orderNumber={props.orderNumber} />
           </div>
-          <div>
-            <DropZone />
-          </div>
         </>
       );
     case "28":
@@ -409,9 +367,6 @@ function ItemContent(props) {
           <div className="ItemContent_Controls">
             <div className="ItemContent"></div>
             <ToolBarHeader orderNumber={props.orderNumber} />
-          </div>
-          <div>
-            <DropZone />
           </div>
         </>
       );
@@ -422,9 +377,6 @@ function ItemContent(props) {
             <div className="ItemContent"></div>
             <ToolBarHeader orderNumber={props.orderNumber} />
           </div>
-          <div>
-            <DropZone />
-          </div>
         </>
       );
     case "30":
@@ -434,9 +386,6 @@ function ItemContent(props) {
             <div className="ItemContent"></div>
             <ToolBarHeader orderNumber={props.orderNumber} />
           </div>
-          <div>
-            <DropZone />
-          </div>
         </>
       );
     case "31":
@@ -445,9 +394,6 @@ function ItemContent(props) {
           <div className="ItemContent_Controls">
             <div className="ItemContent"></div>
             <ToolBarHeader orderNumber={props.orderNumber} />
-          </div>
-          <div>
-            <DropZone />
           </div>
         </>
       );
@@ -466,9 +412,6 @@ function ItemContent(props) {
               nameItemToolbox="Files"
             />
           </div>
-          <div>
-            <DropZone />
-          </div>
         </>
       );
     case "33":
@@ -477,9 +420,6 @@ function ItemContent(props) {
           <div className="ItemContent_Controls">
             <div className="ItemContent"></div>
             <ToolBarHeader orderNumber={props.orderNumber} />
-          </div>
-          <div>
-            <DropZone />
           </div>
         </>
       );
@@ -490,9 +430,6 @@ function ItemContent(props) {
             <div className="ItemContent"></div>
             <ToolBarHeader orderNumber={props.orderNumber} />
           </div>
-          <div>
-            <DropZone />
-          </div>
         </>
       );
     case "35":
@@ -501,9 +438,6 @@ function ItemContent(props) {
           <div className="ItemContent_Controls">
             <div className="ItemContent"></div>
             <ToolBarHeader orderNumber={props.orderNumber} />
-          </div>
-          <div>
-            <DropZone />
           </div>
         </>
       );
@@ -514,9 +448,6 @@ function ItemContent(props) {
             <div className="ItemContent"></div>
             <ToolBarHeader orderNumber={props.orderNumber} />
           </div>
-          <div>
-            <DropZone />
-          </div>
         </>
       );
     case "37":
@@ -525,9 +456,6 @@ function ItemContent(props) {
           <div className="ItemContent_Controls">
             <div className="ItemContent"></div>
             <ToolBarHeader orderNumber={props.orderNumber} />
-          </div>
-          <div>
-            <DropZone />
           </div>
         </>
       );
@@ -540,9 +468,6 @@ function ItemContent(props) {
             </div>
             <ToolBarHeader orderNumber={props.orderNumber} />
           </div>
-          <div>
-            <DropZone />
-          </div>
         </>
       );
     case "39":
@@ -553,9 +478,6 @@ function ItemContent(props) {
               <DropZone />
             </div>
             <ToolBarHeader orderNumber={props.orderNumber} />
-          </div>
-          <div>
-            <DropZone />
           </div>
         </>
       );
@@ -640,7 +562,7 @@ function ItemContent(props) {
     //                 <DropZone />
     //             </div></>)
     default:
-      break;
+      return <div></div>;
   }
 }
 

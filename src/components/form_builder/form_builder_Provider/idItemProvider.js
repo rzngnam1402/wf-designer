@@ -73,7 +73,7 @@ function SetOderNumber({ children }) {
 }
 
 // ---------------------------------------------------------------------
-// variable is used to count order number of item that will drop
+// variable is used to count order number of item that will delete
 const itemDelete = createContext();
 
 function SetItemDelete({ children }) {
@@ -95,7 +95,7 @@ function SetItemDelete({ children }) {
 }
 
 // ---------------------------------------------------------------------
-// variable is used to count order number of item that will drop
+// variable is used to set up name item of controls toolbox General
 const itemToolboxGeneral = createContext();
 
 function SetItemToolboxGeneral({ children }) {
@@ -118,8 +118,33 @@ function SetItemToolboxGeneral({ children }) {
   );
 }
 
+// ------------------------------Never use---------------------------------------
+// variable is used to set up name item of controls toolbox General
+const TotalNodeInsert = createContext();
+
+function SetTotalNodeInsert({ children }) {
+  // featured Function is initialized when use useContext hook
+  const [nodeInsert, setNodeInsert] = useState([]);
+
+  const SetValueNodeInsert = (value) => {
+    setNodeInsert(value);
+  };
+
+  const ValueObjectNode = {
+    nodeInsert,
+    SetValueNodeInsert,
+  };
+
+  return (
+    <TotalNodeInsert.Provider value={ValueObjectNode}>
+      {children}
+    </TotalNodeInsert.Provider>
+  );
+}
+
 export { IdItemInsertContext, IdItemProvider };
 export { checkModal, ModalProperties };
 export { OderNumberitemDrop, SetOderNumber };
 export { itemDelete, SetItemDelete };
 export { itemToolboxGeneral, SetItemToolboxGeneral };
+export { TotalNodeInsert, SetTotalNodeInsert };

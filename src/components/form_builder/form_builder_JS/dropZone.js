@@ -3,12 +3,13 @@ import { useState, useEffect, useContext } from "react";
 import "../form_builder_CSS/dropZone.css";
 import { handleDragLeave, handleDragOver } from "./DragAndDrop";
 import ItemContent from "./ItemContent";
+import DropAddition from "./dropAddition";
 
 import { IdItemInsertContext } from "../form_builder_Provider/idItemProvider";
 import { OderNumberitemDrop } from "../form_builder_Provider/idItemProvider";
 import { itemDelete } from "../form_builder_Provider/idItemProvider";
 
-function DropZone() {
+function DropZone(props) {
   // --------------------------------------------------------
   // Return Dropzone where can drop itemBox component
   // -------------------------------------------------------
@@ -24,26 +25,32 @@ function DropZone() {
   useEffect(() => {
     let check = checkDrop === checkOver && checkDrop !== undefined;
 
-    check &&
+    if (check) {
       setIdNodeInsert((prev) => {
         setCheckDrop("");
+
         return [
           { id: DropZoneContent.id, orderNumber: orderNumberItem.order },
           ...prev,
         ];
       });
-    console.log("Effect 1", idNodeInsert);
-    console.log(ItemDelete.order);
-
-    if (!check && ItemDelete.order !== 0) {
-      console.log("Effect 2", idNodeInsert);
+    } else {
       for (var i = 0; i < idNodeInsert.length; i++) {
-        if (idNodeInsert[i].orderNumber == ItemDelete.order) {
-          idNodeInsert.splice(i, 1);
-          ItemDelete.SetValueOrder(0);
+        if (idNodeInsert[i].orderNumber === ItemDelete.order) {
+          console.log("Tham so i sap xoa = ", i);
+          console.log("Length array truoc khi xoa  = ", idNodeInsert.length);
+          console.log("Item delete se xoa = ", ItemDelete.order);
+          console.log(
+            "Array chua toan bo item trong dropzone = ",
+            idNodeInsert
+          );
+          console.log("Bat dau xoa");
+          idNodeInsert.splice(i, 1, { id: "-1", orderNumber: "-1" });
           break;
         }
       }
+
+      ItemDelete.SetValueOrder(0);
     }
 
     return () =>
@@ -54,9 +61,8 @@ function DropZone() {
 
   return (
     <>
-      {console.log("Handle")}
       <div
-        className={"dropZone notDrag"}
+        className={`dropZone notDrag ${props.class}`}
         onDragOver={(e) => {
           handleDragOver(e);
           setCheckOver(e.target);
@@ -73,12 +79,14 @@ function DropZone() {
       </div>
       {idNodeInsert.map((node, index) => {
         return (
-          <ItemContent
-            key={index}
-            id={node.id}
-            orderNumber={node.orderNumber}
-            name={index}
-          />
+          <div key={index}>
+            <ItemContent
+              id={node.id}
+              orderNumber={node.orderNumber}
+              name={index}
+            />
+            <DropAddition id={node.id} />
+          </div>
         );
       })}
     </>

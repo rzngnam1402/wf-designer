@@ -11,11 +11,10 @@ function ToolBarHeader(props) {
   const ItemDelete = useContext(itemDelete);
   const ToolboxGeneral = useContext(itemToolboxGeneral);
 
+  const orderNumber = props.orderNumber;
   const DeleteST = () => {
     ItemDelete.SetValueOrder(orderNumber);
   };
-
-  const orderNumber = props.orderNumber;
 
   return (
     <div className="toolBarHeader_container">
