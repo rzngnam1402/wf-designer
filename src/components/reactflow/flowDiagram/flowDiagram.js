@@ -19,7 +19,7 @@ const initialNodes = [
     {
         id: 'expression-1',
         type: 'textUpdater',
-        position: { x: -100, y: 100 },
+        position: { x: -100, y: 100 }
     },
 ];
 
