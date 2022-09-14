@@ -9,10 +9,12 @@
 input {
     border: 0.5px solid grey;
     border-radius: 50px;
+    padding: 3px;
 }
 
 .text-updater-node label {
     display: block;
     color: #777;
     font-size: 12px;
+    margin-bottom: 5px;
 }
