@@ -7,6 +7,8 @@ import { IdItemProvider } from "./components/form_builder/form_builder_Provider/
 import { ModalProperties } from "./components/form_builder/form_builder_Provider/idItemProvider";
 import { SetOderNumber } from "./components/form_builder/form_builder_Provider/idItemProvider";
 import { SetItemDelete } from "./components/form_builder/form_builder_Provider/idItemProvider";
+import { SetItemToolboxGeneral } from "./components/form_builder/form_builder_Provider/idItemProvider";
+// import { SetTotalNodeInsert } from "./components/form_builder/form_builder_Provider/idItemProvider";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 //  Import FontAwesome 5
@@ -20,7 +22,11 @@ root.render(
     <ModalProperties>
       <SetOderNumber>
         <SetItemDelete>
-          <App />
+          <SetItemToolboxGeneral>
+            {/* <SetTotalNodeInsert> */}
+            <App />
+            {/* </SetTotalNodeInsert> */}
+          </SetItemToolboxGeneral>
         </SetItemDelete>
       </SetOderNumber>
     </ModalProperties>
