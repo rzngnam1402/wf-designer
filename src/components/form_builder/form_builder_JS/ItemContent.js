@@ -54,7 +54,7 @@ function ItemContent(props) {
         <>
           <div className="ItemContent_containers">
             <div className="ItemContent_container">
-              <DropZone />
+              <DropZone id={props.idDrop} relationship={props.relationship} />
             </div>
             <ToolBarHeader
               orderNumber={props.orderNumber}

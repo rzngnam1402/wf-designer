@@ -8,7 +8,8 @@ import { ModalProperties } from "./components/form_builder/form_builder_Provider
 import { SetOderNumber } from "./components/form_builder/form_builder_Provider/idItemProvider";
 import { SetItemDelete } from "./components/form_builder/form_builder_Provider/idItemProvider";
 import { SetItemToolboxGeneral } from "./components/form_builder/form_builder_Provider/idItemProvider";
-// import { SetTotalNodeInsert } from "./components/form_builder/form_builder_Provider/idItemProvider";
+import { SetObjectTotalNode } from "./components/form_builder/form_builder_Provider/idItemProvider";
+import { SetCheckChild } from "./components/form_builder/form_builder_Provider/idItemProvider";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 //  Import FontAwesome 5
@@ -23,9 +24,11 @@ root.render(
       <SetOderNumber>
         <SetItemDelete>
           <SetItemToolboxGeneral>
-            {/* <SetTotalNodeInsert> */}
-            <App />
-            {/* </SetTotalNodeInsert> */}
+            <SetObjectTotalNode>
+              <SetCheckChild>
+                <App />
+              </SetCheckChild>
+            </SetObjectTotalNode>
           </SetItemToolboxGeneral>
         </SetItemDelete>
       </SetOderNumber>

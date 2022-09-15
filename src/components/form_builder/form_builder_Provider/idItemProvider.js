@@ -30,7 +30,10 @@ const checkModal = createContext();
 
 function ModalProperties({ children }) {
   // featured Function is initialized when use useContext hook
-  const [ToggleModal, setToggleModal] = useState(false);
+  const [ToggleModal, setToggleModal] = useState({
+    check: false,
+    nameItem: "",
+  });
 
   const setValueToggleModal = (value) => {
     setToggleModal(value);
@@ -118,27 +121,51 @@ function SetItemToolboxGeneral({ children }) {
   );
 }
 
-// ------------------------------Never use---------------------------------------
-// variable is used to set up name item of controls toolbox General
-const TotalNodeInsert = createContext();
+// ---------------------------------------------------------------------
+// variable is used to save total component inside form
+const ObjectTotalNode = createContext();
 
-function SetTotalNodeInsert({ children }) {
+function SetObjectTotalNode({ children }) {
   // featured Function is initialized when use useContext hook
-  const [nodeInsert, setNodeInsert] = useState([]);
+  const [nodeCurrent, setNodeCurrent] = useState([]);
 
-  const SetValueNodeInsert = (value) => {
-    setNodeInsert(value);
+  const SetObjectNodeInsert = (value) => {
+    setNodeCurrent(value);
   };
 
   const ValueObjectNode = {
-    nodeInsert,
-    SetValueNodeInsert,
+    nodeCurrent,
+    SetObjectNodeInsert,
   };
 
   return (
-    <TotalNodeInsert.Provider value={ValueObjectNode}>
+    <ObjectTotalNode.Provider value={ValueObjectNode}>
       {children}
-    </TotalNodeInsert.Provider>
+    </ObjectTotalNode.Provider>
+  );
+}
+
+// ---------------------------------------------------------------------
+// variable is used to difine index inserted note
+const CheckChild = createContext();
+
+function SetCheckChild({ children }) {
+  // featured Function is initialized when use useContext hook
+  const [checkChild, setCheckChild] = useState({ check: false, data: {} });
+
+  const SetValueCheckChild = (value) => {
+    setCheckChild(value);
+  };
+
+  const ValueCheckChild = {
+    checkChild,
+    SetValueCheckChild,
+  };
+
+  return (
+    <CheckChild.Provider value={ValueCheckChild}>
+      {children}
+    </CheckChild.Provider>
   );
 }
 
@@ -147,4 +174,5 @@ export { checkModal, ModalProperties };
 export { OderNumberitemDrop, SetOderNumber };
 export { itemDelete, SetItemDelete };
 export { itemToolboxGeneral, SetItemToolboxGeneral };
-export { TotalNodeInsert, SetTotalNodeInsert };
+export { ObjectTotalNode, SetObjectTotalNode };
+export { CheckChild, SetCheckChild };

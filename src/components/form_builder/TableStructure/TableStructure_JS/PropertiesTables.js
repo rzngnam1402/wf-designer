@@ -5,7 +5,7 @@ import "../TableStructure_CSS/PropertiesTables.css";
 import DescriptionTable from "./DescriptionTable";
 import { checkModal } from "../../form_builder_Provider/idItemProvider";
 
-function PropertiesTables() {
+function PropertiesTables(props) {
   // render table inside modal
   const ButtonToggleModal = useContext(checkModal);
 
@@ -13,7 +13,7 @@ function PropertiesTables() {
     <div>
       <div className="Modal_inside">
         <div className="Modal_inside_container">
-          <Label className="Label_common">container</Label>
+          <Label className="Label_common">{props.nameItem}</Label>
           <div className="Modal_description_table">
             <DescriptionTable></DescriptionTable>
           </div>
@@ -23,7 +23,10 @@ function PropertiesTables() {
         <Button
           primary
           onClick={() => {
-            ButtonToggleModal.setValueToggleModal(false);
+            ButtonToggleModal.setValueToggleModal({
+              check: false,
+              nameItem: "",
+            });
           }}
         >
           Save
@@ -31,7 +34,10 @@ function PropertiesTables() {
         <Button
           secondary
           onClick={() => {
-            ButtonToggleModal.setValueToggleModal(false);
+            ButtonToggleModal.setValueToggleModal({
+              check: false,
+              nameItem: "",
+            });
           }}
         >
           Cancel

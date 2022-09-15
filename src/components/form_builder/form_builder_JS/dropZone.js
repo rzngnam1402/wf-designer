@@ -8,6 +8,8 @@ import DropAddition from "./dropAddition";
 import { IdItemInsertContext } from "../form_builder_Provider/idItemProvider";
 import { OderNumberitemDrop } from "../form_builder_Provider/idItemProvider";
 import { itemDelete } from "../form_builder_Provider/idItemProvider";
+import { ObjectTotalNode } from "../form_builder_Provider/idItemProvider";
+import { CheckChild } from "../form_builder_Provider/idItemProvider";
 
 function DropZone(props) {
   // --------------------------------------------------------
@@ -17,10 +19,24 @@ function DropZone(props) {
   const [checkDrop, setCheckDrop] = useState();
   const [checkOver, setCheckOver] = useState();
   const [idNodeInsert, setIdNodeInsert] = useState([]);
+  const [objectNodeCurrent, setObjectNodeCurrent] = useState({
+    idParent: "",
+    id: "",
+    name: "",
+    child: [],
+  });
 
   const DropZoneContent = useContext(IdItemInsertContext);
   const orderNumberItem = useContext(OderNumberitemDrop);
   const ItemDelete = useContext(itemDelete);
+  const TotalNode = useContext(ObjectTotalNode);
+  const Child = useContext(CheckChild);
+
+  // useEffect(() => {
+  //   if (Child.checkChild === true) {
+  //     setObjectNodeCurrent();
+  //   }
+  // }, [CheckChild.checkChild]);
 
   useEffect(() => {
     let check = checkDrop === checkOver && checkDrop !== undefined;
@@ -34,17 +50,62 @@ function DropZone(props) {
           ...prev,
         ];
       });
+
+      // Create object current node
+      // setObjectNodeCurrent((prev) => ({ ...prev, name: DropZoneContent.id }));
+      // if (props.id && props.relationship) {
+      //   if (props.relationship === "Child") {
+      //     setObjectNodeCurrent((prev) => ({
+      //       ...prev,
+      //       idParent: props.id,
+      //     }));
+      // o ben duoi array mac dinh la thanh phan cha
+
+      // can phai sua props.id ben duoi thanh ObjectNodeCurrent.idParent
+      // for (const ele of arrays) {
+      //   if ((ele[id] = props.id)) {
+      //     setObjectNodeCurrent((prev) => ({
+      //       ...prev,
+      //       id: `${ele[id]}_${ele[child].length}`,
+      //     }));
+
+      //     ObjectTotalNode.SetObjectNodeInsert((prev) => [
+      //       objectNodeCurrent,
+      //       ...prev,
+      //     ]);
+      //     break;
+      //   }
+      // }
+      // } else if (props.relationship === "Brother") {
+      // for (const ele of arrays) {
+      //   if ((ele[id] = props.id)) {
+      //     setObjectNodeCurrent((prev) => ({
+      //       ...prev,
+      //       id: `${ele[id]}_${arrays.length}`,
+      //     }));
+      //     ObjectTotalNode.SetObjectNodeInsert((prev) => [
+      //       objectNodeCurrent,
+      //       ...prev,
+      //     ]);
+      //     break;
+      //   }
+      // }
+      // }
+      // } else {
+      //   setObjectNodeCurrent((prev) => ({
+      //     ...prev,
+      //     id: ObjectTotalNode.nodeCurrent.length,
+      //   }));
+
+      //   ObjectTotalNode.SetObjectNodeInsert((prev) => [
+      //     objectNodeCurrent,
+      //     ...prev,
+      //   ]);
+      // }
+      // Complete handle function
     } else {
       for (var i = 0; i < idNodeInsert.length; i++) {
         if (idNodeInsert[i].orderNumber === ItemDelete.order) {
-          console.log("Tham so i sap xoa = ", i);
-          console.log("Length array truoc khi xoa  = ", idNodeInsert.length);
-          console.log("Item delete se xoa = ", ItemDelete.order);
-          console.log(
-            "Array chua toan bo item trong dropzone = ",
-            idNodeInsert
-          );
-          console.log("Bat dau xoa");
           idNodeInsert.splice(i, 1, { id: "-1", orderNumber: "-1" });
           break;
         }
@@ -61,6 +122,7 @@ function DropZone(props) {
 
   return (
     <>
+      {console.log("Re-Render")}
       <div
         className={`dropZone notDrag ${props.class}`}
         onDragOver={(e) => {
@@ -84,8 +146,14 @@ function DropZone(props) {
               id={node.id}
               orderNumber={node.orderNumber}
               name={index}
+              idDrop={objectNodeCurrent.id}
+              relationship="Child"
             />
-            <DropAddition id={node.id} />
+            <DropAddition
+              ident={node.id}
+              id={objectNodeCurrent.id}
+              relationship="Brother"
+            />
           </div>
         );
       })}

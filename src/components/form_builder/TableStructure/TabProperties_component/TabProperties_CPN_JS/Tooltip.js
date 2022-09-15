@@ -1,9 +1,3 @@
+function Tooltip() {}
 
-
-
-
-function Tooltip() {
-
-}
-
-export default Tooltip
+export default Tooltip;
