@@ -169,6 +169,26 @@ function SetCheckChild({ children }) {
   );
 }
 
+// ---------------------------------------------------------------------
+// variable is used to switch between builder mode and preview mode
+const Preview = createContext();
+
+function SetPreview({ children }) {
+  // featured Function is initialized when use useContext hook
+  const [preview, setPreview] = useState(false);
+
+  const SetValuePreview = (value) => {
+    setPreview(value);
+  };
+
+  const ValuePreview = {
+    preview,
+    SetValuePreview,
+  };
+
+  return <Preview.Provider value={ValuePreview}>{children}</Preview.Provider>;
+}
+
 export { IdItemInsertContext, IdItemProvider };
 export { checkModal, ModalProperties };
 export { OderNumberitemDrop, SetOderNumber };
@@ -176,3 +196,4 @@ export { itemDelete, SetItemDelete };
 export { itemToolboxGeneral, SetItemToolboxGeneral };
 export { ObjectTotalNode, SetObjectTotalNode };
 export { CheckChild, SetCheckChild };
+export { Preview, SetPreview };

@@ -122,7 +122,7 @@ function DropZone(props) {
 
   return (
     <>
-      {console.log("Re-Render")}
+      {console.log("Re-Render: ", idNodeInsert)}
       <div
         className={`dropZone notDrag ${props.class}`}
         onDragOver={(e) => {

@@ -10,6 +10,7 @@ import { SetItemDelete } from "./components/form_builder/form_builder_Provider/i
 import { SetItemToolboxGeneral } from "./components/form_builder/form_builder_Provider/idItemProvider";
 import { SetObjectTotalNode } from "./components/form_builder/form_builder_Provider/idItemProvider";
 import { SetCheckChild } from "./components/form_builder/form_builder_Provider/idItemProvider";
+import { SetPreview } from "./components/form_builder/form_builder_Provider/idItemProvider";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 //  Import FontAwesome 5
@@ -26,7 +27,9 @@ root.render(
           <SetItemToolboxGeneral>
             <SetObjectTotalNode>
               <SetCheckChild>
-                <App />
+                <SetPreview>
+                  <App />
+                </SetPreview>
               </SetCheckChild>
             </SetObjectTotalNode>
           </SetItemToolboxGeneral>

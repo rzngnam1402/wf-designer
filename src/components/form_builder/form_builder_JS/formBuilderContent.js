@@ -5,7 +5,6 @@ function FormBuilderContent() {
   // ------------------------------------------------
   // Return the form builder on the left
   // ------------------------------------------------
-  console.log(<DropZone />);
 
   return (
     <div className="formBuiderContent_Container">

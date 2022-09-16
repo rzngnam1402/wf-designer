@@ -1,22 +1,15 @@
-import './App.css';
-// import Flow from './components/flow/flow';
-// import ConditionForm from './components/form/form';
+import FormBuilder from "./components/form_builder/form_builder_JS/formBuilder";
+import Preview from "./components/form_builder/form_builder_JS/Preview";
 
-import FormBuilder from './components/form_builder/form_builder_JS/formBuilder';
-
+// import "./App.css";
 
 function App() {
   return (
-    // <>
-    //   <ConditionForm />
-    //   <Flow />
-    // </>
-
     <>
       <FormBuilder />
+      <Preview />
     </>
-
-  )
+  );
 }
 
 export default App;

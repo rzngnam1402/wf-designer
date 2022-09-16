@@ -10,6 +10,8 @@ import {
   Button,
 } from "semantic-ui-react";
 
+import $ from "jquery";
+
 import "../form_builder_CSS/ItemContent.css";
 import ToolBarHeader from "../TableStructure/TableStructure_JS/toolBarHeader";
 import DropZone from "./dropZone";
