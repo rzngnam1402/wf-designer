@@ -10,17 +10,20 @@ import {
   Button,
 } from "semantic-ui-react";
 
-import $ from "jquery";
+// import $ from "jquery";
 
 import "../form_builder_CSS/ItemContent.css";
+
 import ToolBarHeader from "../TableStructure/TableStructure_JS/toolBarHeader";
 import DropZone from "./dropZone";
+import DropComponentUI from "./dropComponentUI";
 
-function ItemContent(props) {
+function ItemContent(props, { child }) {
   // -----------------------------------------------
   // Return represent of dragged and dropped item
   // -----------------------------------------------
   // const [checkHover, setCheckHover] = useState(false)
+  console.log("Dang xu ly Item content: ", props);
 
   const sampleOption = [
     {
@@ -54,14 +57,23 @@ function ItemContent(props) {
     case "2":
       return (
         <>
+          {console.log("Dang xu ly containersssssssssss: ", props)}
           <div className="ItemContent_containers">
             <div className="ItemContent_container">
-              <DropZone id={props.idDrop} relationship={props.relationship} />
+              <DropZone
+                level={props.level + 1}
+                birthOrder={props.birthOrder - 1}
+                first={true}
+              />
+              <DropComponentUI nodes={props.children} />
             </div>
             <ToolBarHeader
-              orderNumber={props.orderNumber}
+              // orderNumber={props.orderNumber}
               nameItemToolbox="Container"
             />
+          </div>
+          <div>
+            <DropZone level={props.level} birthOrder={props.birthOrder} />
           </div>
         </>
       );
@@ -173,9 +185,12 @@ function ItemContent(props) {
               <Header size="large">Header</Header>
             </div>
             <ToolBarHeader
-              orderNumber={props.orderNumber}
+              // orderNumber={props.orderNumber}
               nameItemToolbox="Header"
             />
+          </div>
+          <div>
+            <DropZone level={props.level} birthOrder={props.birthOrder} />
           </div>
         </>
       );
@@ -188,9 +203,12 @@ function ItemContent(props) {
               <Input value="" fluid />
             </div>
             <ToolBarHeader
-              orderNumber={props.orderNumber}
+              // orderNumber={props.orderNumber}
               nameItemToolbox="Input"
             />
+          </div>
+          <div>
+            <DropZone level={props.level} birthOrder={props.birthOrder} />
           </div>
         </>
       );
@@ -203,9 +221,12 @@ function ItemContent(props) {
               <Input value="" fluid />
             </div>
             <ToolBarHeader
-              orderNumber={props.orderNumber}
+              // orderNumber={props.orderNumber}
               nameItemToolbox="NumberFormat"
             />
+          </div>
+          <div>
+            <DropZone level={props.level} birthOrder={props.birthOrder} />
           </div>
         </>
       );
@@ -220,9 +241,12 @@ function ItemContent(props) {
               </Form>
             </div>
             <ToolBarHeader
-              orderNumber={props.orderNumber}
+              // orderNumber={props.orderNumber}
               nameItemToolbox="TextArea"
             />
+          </div>
+          <div>
+            <DropZone level={props.level} birthOrder={props.birthOrder} />
           </div>
         </>
       );
@@ -235,9 +259,12 @@ function ItemContent(props) {
               <Input value="" fluid />
             </div>
             <ToolBarHeader
-              orderNumber={props.orderNumber}
+              // orderNumber={props.orderNumber}
               nameItemToolbox="Dictionary"
             />
+          </div>
+          <div>
+            <DropZone level={props.level} birthOrder={props.birthOrder} />
           </div>
         </>
       );
@@ -249,9 +276,12 @@ function ItemContent(props) {
               <Label>TreePicker</Label>
             </div>
             <ToolBarHeader
-              orderNumber={props.orderNumber}
+              // orderNumber={props.orderNumber}
               nameItemToolbox="TreePicker"
             />
+          </div>
+          <div>
+            <DropZone level={props.level} birthOrder={props.birthOrder} />
           </div>
         </>
       );
@@ -264,9 +294,12 @@ function ItemContent(props) {
               <Dropdown fluid selection options={sampleOption} />
             </div>
             <ToolBarHeader
-              orderNumber={props.orderNumber}
+              // orderNumber={props.orderNumber}
               nameItemToolbox="Dropdown"
             />
+          </div>
+          <div>
+            <DropZone level={props.level} birthOrder={props.birthOrder} />
           </div>
         </>
       );
@@ -281,9 +314,12 @@ function ItemContent(props) {
               </div>
             </div>
             <ToolBarHeader
-              orderNumber={props.orderNumber}
+              // orderNumber={props.orderNumber}
               nameItemToolbox="Checkbox"
             />
+          </div>
+          <div>
+            <DropZone level={props.level} birthOrder={props.birthOrder} />
           </div>
         </>
       );
@@ -308,9 +344,12 @@ function ItemContent(props) {
               </Form>
             </div>
             <ToolBarHeader
-              orderNumber={props.orderNumber}
+              // orderNumber={props.orderNumber}
               nameItemToolbox="RadioGroup"
             />
+          </div>
+          <div>
+            <DropZone level={props.level} birthOrder={props.birthOrder} />
           </div>
         </>
       );
@@ -325,9 +364,12 @@ function ItemContent(props) {
               </div>
             </div>
             <ToolBarHeader
-              orderNumber={props.orderNumber}
+              // orderNumber={props.orderNumber}
               nameItemToolbox="Button"
             />
+          </div>
+          <div>
+            <DropZone level={props.level} birthOrder={props.birthOrder} />
           </div>
         </>
       );
@@ -339,9 +381,12 @@ function ItemContent(props) {
               <Label>Label</Label>
             </div>
             <ToolBarHeader
-              orderNumber={props.orderNumber}
+              // orderNumber={props.orderNumber}
               nameItemToolbox="Label"
             />
+          </div>
+          <div>
+            <DropZone level={props.level} birthOrder={props.birthOrder} />
           </div>
         </>
       );

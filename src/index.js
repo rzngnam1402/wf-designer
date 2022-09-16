@@ -6,10 +6,10 @@ import App from "./App";
 import { IdItemProvider } from "./components/form_builder/form_builder_Provider/idItemProvider";
 import { ModalProperties } from "./components/form_builder/form_builder_Provider/idItemProvider";
 import { SetOderNumber } from "./components/form_builder/form_builder_Provider/idItemProvider";
-import { SetItemDelete } from "./components/form_builder/form_builder_Provider/idItemProvider";
+import { SetOrderDropzoneBorn } from "./components/form_builder/form_builder_Provider/idItemProvider";
 import { SetItemToolboxGeneral } from "./components/form_builder/form_builder_Provider/idItemProvider";
 import { SetObjectTotalNode } from "./components/form_builder/form_builder_Provider/idItemProvider";
-import { SetCheckChild } from "./components/form_builder/form_builder_Provider/idItemProvider";
+import { SetCheckRender } from "./components/form_builder/form_builder_Provider/idItemProvider";
 import { SetPreview } from "./components/form_builder/form_builder_Provider/idItemProvider";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
@@ -23,17 +23,17 @@ root.render(
   <IdItemProvider>
     <ModalProperties>
       <SetOderNumber>
-        <SetItemDelete>
+        <SetOrderDropzoneBorn>
           <SetItemToolboxGeneral>
             <SetObjectTotalNode>
-              <SetCheckChild>
+              <SetCheckRender>
                 <SetPreview>
                   <App />
                 </SetPreview>
-              </SetCheckChild>
+              </SetCheckRender>
             </SetObjectTotalNode>
           </SetItemToolboxGeneral>
-        </SetItemDelete>
+        </SetOrderDropzoneBorn>
       </SetOderNumber>
     </ModalProperties>
   </IdItemProvider>

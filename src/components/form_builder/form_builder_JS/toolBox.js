@@ -111,6 +111,7 @@ function ToolBox() {
         <input type="text" placeholder="Search..." />
         <i className="fa-solid fa-magnifying-glass"></i>
       </div>
+
       <ul className="toolBox_list_option">
         <li
           className="toolBox_title"

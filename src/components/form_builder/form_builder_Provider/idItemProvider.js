@@ -60,7 +60,7 @@ function SetOderNumber({ children }) {
   const [order, setOrder] = useState(1);
 
   const IncreaseValueOrder = () => {
-    setOrder(order + 1);
+    setOrder((prev) => prev + 1);
   };
 
   const ValueOrder = {
@@ -76,15 +76,15 @@ function SetOderNumber({ children }) {
 }
 
 // ---------------------------------------------------------------------
-// variable is used to count order number of item that will delete
-const itemDelete = createContext();
+// variable is used to count order number of dropzone born
+const OrderDropzoneBorn = createContext();
 
-function SetItemDelete({ children }) {
+function SetOrderDropzoneBorn({ children }) {
   // featured Function is initialized when use useContext hook
   const [order, setOrder] = useState(0);
 
   const SetValueOrder = (value) => {
-    setOrder(value);
+    setOrder((prev) => prev + value);
   };
 
   const ValueOrder = {
@@ -93,7 +93,9 @@ function SetItemDelete({ children }) {
   };
 
   return (
-    <itemDelete.Provider value={ValueOrder}>{children}</itemDelete.Provider>
+    <OrderDropzoneBorn.Provider value={ValueOrder}>
+      {children}
+    </OrderDropzoneBorn.Provider>
   );
 }
 
@@ -127,14 +129,14 @@ const ObjectTotalNode = createContext();
 
 function SetObjectTotalNode({ children }) {
   // featured Function is initialized when use useContext hook
-  const [nodeCurrent, setNodeCurrent] = useState([]);
+  const [node, setNode] = useState([]);
 
   const SetObjectNodeInsert = (value) => {
-    setNodeCurrent(value);
+    setNode(value);
   };
 
   const ValueObjectNode = {
-    nodeCurrent,
+    node,
     SetObjectNodeInsert,
   };
 
@@ -147,25 +149,25 @@ function SetObjectTotalNode({ children }) {
 
 // ---------------------------------------------------------------------
 // variable is used to difine index inserted note
-const CheckChild = createContext();
+const CheckRender = createContext();
 
-function SetCheckChild({ children }) {
+function SetCheckRender({ children }) {
   // featured Function is initialized when use useContext hook
-  const [checkChild, setCheckChild] = useState({ check: false, data: {} });
+  const [checkRender, setCheckRender] = useState(false);
 
-  const SetValueCheckChild = (value) => {
-    setCheckChild(value);
+  const SetValueCheckRender = (value) => {
+    setCheckRender(value);
   };
 
-  const ValueCheckChild = {
-    checkChild,
-    SetValueCheckChild,
+  const ValueCheckRender = {
+    checkRender,
+    SetValueCheckRender,
   };
 
   return (
-    <CheckChild.Provider value={ValueCheckChild}>
+    <CheckRender.Provider value={ValueCheckRender}>
       {children}
-    </CheckChild.Provider>
+    </CheckRender.Provider>
   );
 }
 
@@ -192,8 +194,8 @@ function SetPreview({ children }) {
 export { IdItemInsertContext, IdItemProvider };
 export { checkModal, ModalProperties };
 export { OderNumberitemDrop, SetOderNumber };
-export { itemDelete, SetItemDelete };
+export { OrderDropzoneBorn, SetOrderDropzoneBorn };
 export { itemToolboxGeneral, SetItemToolboxGeneral };
 export { ObjectTotalNode, SetObjectTotalNode };
-export { CheckChild, SetCheckChild };
+export { CheckRender, SetCheckRender };
 export { Preview, SetPreview };

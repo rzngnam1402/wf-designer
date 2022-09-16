@@ -1,162 +1,197 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
+// import { memo } from "react";
+// import { useCallback } from "react";
 
 import "../form_builder_CSS/dropZone.css";
-import { handleDragLeave, handleDragOver } from "./DragAndDrop";
-import ItemContent from "./ItemContent";
-import DropAddition from "./dropAddition";
+// import ItemContent from "./ItemContent";
+// import DropAddition from "./dropAddition";
 
 import { IdItemInsertContext } from "../form_builder_Provider/idItemProvider";
 import { OderNumberitemDrop } from "../form_builder_Provider/idItemProvider";
-import { itemDelete } from "../form_builder_Provider/idItemProvider";
+// import { OrderDropzoneBorn } from "../form_builder_Provider/idItemProvider";
 import { ObjectTotalNode } from "../form_builder_Provider/idItemProvider";
-import { CheckChild } from "../form_builder_Provider/idItemProvider";
+// import { CheckRender } from "../form_builder_Provider/idItemProvider";
+
+var OrderDropzoneBorn = 0;
 
 function DropZone(props) {
   // --------------------------------------------------------
   // Return Dropzone where can drop itemBox component
+  // HandleDragOver: handle event: Drag Over
+  // HandleDragLeave: handle event: Drag Leave
   // -------------------------------------------------------
 
+  // const [checkRender, setCheckRender] = useState(false);
   const [checkDrop, setCheckDrop] = useState();
   const [checkOver, setCheckOver] = useState();
-  const [idNodeInsert, setIdNodeInsert] = useState([]);
-  const [objectNodeCurrent, setObjectNodeCurrent] = useState({
+  const [NodeInsertCurrent, setNodeInsertCurrent] = useState({
     idParent: "",
-    id: "",
-    name: "",
-    child: [],
+    idName: "",
+    children: [],
+    dopzoneCurrent: { level: "", birthOrder: "", dropChild: "" },
   });
 
   const DropZoneContent = useContext(IdItemInsertContext);
   const orderNumberItem = useContext(OderNumberitemDrop);
-  const ItemDelete = useContext(itemDelete);
+  // const OrderDropzone = useContext(OrderDropzoneBorn);
   const TotalNode = useContext(ObjectTotalNode);
-  const Child = useContext(CheckChild);
+  // const checkRenderUI = useContext(CheckRender);
 
-  // useEffect(() => {
-  //   if (Child.checkChild === true) {
-  //     setObjectNodeCurrent();
-  //   }
-  // }, [CheckChild.checkChild]);
+  var fakeContext;
 
-  useEffect(() => {
-    let check = checkDrop === checkOver && checkDrop !== undefined;
+  const handleDragOver = (e) => {
+    e.preventDefault();
+    e.target.classList.remove("dragStart");
+    e.target.classList.add("dragOver");
+    return true;
+  };
 
-    if (check) {
-      setIdNodeInsert((prev) => {
-        setCheckDrop("");
+  const handleDragLeave = (e) => {
+    e.preventDefault();
+    e.target.classList.remove("dragOver");
+    e.target.classList.add("dragStart");
+  };
 
-        return [
-          { id: DropZoneContent.id, orderNumber: orderNumberItem.order },
-          ...prev,
-        ];
-      });
+  const FindDropzone = (array, birth, dropchildren, level, first) => {
+    let indexNode = 0;
 
-      // Create object current node
-      // setObjectNodeCurrent((prev) => ({ ...prev, name: DropZoneContent.id }));
-      // if (props.id && props.relationship) {
-      //   if (props.relationship === "Child") {
-      //     setObjectNodeCurrent((prev) => ({
-      //       ...prev,
-      //       idParent: props.id,
-      //     }));
-      // o ben duoi array mac dinh la thanh phan cha
+    array.forEach((ele) => {
+      indexNode++;
 
-      // can phai sua props.id ben duoi thanh ObjectNodeCurrent.idParent
-      // for (const ele of arrays) {
-      //   if ((ele[id] = props.id)) {
-      //     setObjectNodeCurrent((prev) => ({
-      //       ...prev,
-      //       id: `${ele[id]}_${ele[child].length}`,
-      //     }));
+      // Neu tim ra dropzone
+      if (ele.dopzoneCurrent.birthOrder === birth) {
+        // Neu dropzone la first dropzone
+        if (first) {
+          // Set gia tri nodecurrent
+          let nodeInsert = {
+            idParent: "first",
+            idName: DropZoneContent.id,
+            children: [],
+            dopzoneCurrent: {
+              level: level,
+              birthOrder: OrderDropzoneBorn,
+              dropChild: dropchildren,
+            },
+          };
+          // lien ket vao children
+          ele.children = [nodeInsert, ...ele.children];
+          return array;
+        } else {
+          // tao object cho node vua insert
 
-      //     ObjectTotalNode.SetObjectNodeInsert((prev) => [
-      //       objectNodeCurrent,
-      //       ...prev,
-      //     ]);
-      //     break;
-      //   }
-      // }
-      // } else if (props.relationship === "Brother") {
-      // for (const ele of arrays) {
-      //   if ((ele[id] = props.id)) {
-      //     setObjectNodeCurrent((prev) => ({
-      //       ...prev,
-      //       id: `${ele[id]}_${arrays.length}`,
-      //     }));
-      //     ObjectTotalNode.SetObjectNodeInsert((prev) => [
-      //       objectNodeCurrent,
-      //       ...prev,
-      //     ]);
-      //     break;
-      //   }
-      // }
-      // }
-      // } else {
-      //   setObjectNodeCurrent((prev) => ({
-      //     ...prev,
-      //     id: ObjectTotalNode.nodeCurrent.length,
-      //   }));
+          let nodeInsert = {
+            idParent: "last",
+            idName: DropZoneContent.id,
+            children: [],
+            dopzoneCurrent: {
+              level: level,
+              birthOrder: OrderDropzoneBorn,
+              dropChild: dropchildren,
+            },
+          };
 
-      //   ObjectTotalNode.SetObjectNodeInsert((prev) => [
-      //     objectNodeCurrent,
-      //     ...prev,
-      //   ]);
-      // }
-      // Complete handle function
-    } else {
-      for (var i = 0; i < idNodeInsert.length; i++) {
-        if (idNodeInsert[i].orderNumber === ItemDelete.order) {
-          idNodeInsert.splice(i, 1, { id: "-1", orderNumber: "-1" });
-          break;
+          // Them object vao trong array
+          return array.splice(indexNode, 0, nodeInsert);
+        }
+      } else {
+        if (ele.children !== []) {
+          if (level > ele.dopzoneCurrent.level) {
+            ele.children = FindDropzone(
+              ele.children,
+              birth,
+              dropchildren,
+              level,
+              first
+            );
+          }
         }
       }
+    });
 
-      ItemDelete.SetValueOrder(0);
-    }
+    return array;
+    // gan vao trong object tong hop cac node insert
+  };
 
-    return () =>
-      checkDrop === checkOver &&
-      checkDrop !== undefined &&
+  const HandleDrop = (fakeCheckDrop) => {
+    let check = fakeCheckDrop === checkOver && fakeCheckDrop !== undefined;
+    if (check) {
+      setCheckDrop("");
+
+      const countDropChild = DropZoneContent.id === "2" ? 2 : 1;
       orderNumberItem.IncreaseValueOrder();
-  }, [checkDrop, ItemDelete.order]);
+      OrderDropzoneBorn += countDropChild;
+
+      // logic nay chi mang tinh viet cho nhanh, can hoan thanh sau khi logic lon nhat dung
+      //ket thuc logic nhanh
+
+      // TH1: drop on first dropzone
+      if (props.first && props.level === 1) {
+        setNodeInsertCurrent(() => {
+          return {
+            idParent: "first",
+            idName: DropZoneContent.id,
+            children: [],
+            dopzoneCurrent: {
+              level: props.level,
+              birthOrder: OrderDropzoneBorn,
+              dropChild: countDropChild,
+            },
+          };
+        });
+      } else {
+        if (props.first) {
+          fakeContext = FindDropzone(
+            TotalNode.node,
+            props.birthOrder + 1,
+            countDropChild,
+            props.level,
+            true
+          );
+          // tao object cho node vua insert
+        }
+        //TH2: drop on node that difference first node
+        else {
+          fakeContext = FindDropzone(
+            TotalNode.node,
+            props.birthOrder,
+            countDropChild,
+            props.level,
+            false
+          );
+        }
+      }
+    }
+    if (fakeContext !== undefined) {
+      TotalNode.SetObjectNodeInsert([...fakeContext]);
+    }
+  };
+
+  useEffect(() => {
+    if (NodeInsertCurrent.idParent !== "" && props.first && props.level === 1) {
+      TotalNode.SetObjectNodeInsert((prev) => [NodeInsertCurrent, ...prev]);
+    }
+  }, [NodeInsertCurrent]);
 
   return (
     <>
-      {console.log("Re-Render: ", idNodeInsert)}
+      {/* {console.log("Object dang tim: ", TotalNode.node)} */}
       <div
         className={`dropZone notDrag ${props.class}`}
         onDragOver={(e) => {
           handleDragOver(e);
           setCheckOver(e.target);
         }}
-        onDrop={(e) => {
-          setCheckDrop(e.target);
-        }}
         onDragLeave={(e) => {
           handleDragLeave(e);
           setCheckOver("");
         }}
+        onDrop={(e) => {
+          setCheckDrop(e.target);
+          HandleDrop(e.target);
+        }}
       >
         DROP ZONE
       </div>
-      {idNodeInsert.map((node, index) => {
-        return (
-          <div key={index}>
-            <ItemContent
-              id={node.id}
-              orderNumber={node.orderNumber}
-              name={index}
-              idDrop={objectNodeCurrent.id}
-              relationship="Child"
-            />
-            <DropAddition
-              ident={node.id}
-              id={objectNodeCurrent.id}
-              relationship="Brother"
-            />
-          </div>
-        );
-      })}
     </>
   );
 }
