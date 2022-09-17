@@ -18,7 +18,7 @@ import ToolBarHeader from "../TableStructure/TableStructure_JS/toolBarHeader";
 import DropZone from "./dropZone";
 import DropComponentUI from "./dropComponentUI";
 
-function ItemContent(props, { child }) {
+function ItemContent(props) {
   // -----------------------------------------------
   // Return represent of dragged and dropped item
   // -----------------------------------------------
@@ -60,20 +60,26 @@ function ItemContent(props, { child }) {
           {console.log("Dang xu ly containersssssssssss: ", props)}
           <div className="ItemContent_containers">
             <div className="ItemContent_container">
-              <DropZone
-                level={props.level + 1}
-                birthOrder={props.birthOrder - 1}
-                first={true}
-              />
-              <DropComponentUI nodes={props.children} />
+              {!props.preview && (
+                <DropZone
+                  level={props.level + 1}
+                  birthOrder={props.birthOrder - 1}
+                  first={true}
+                />
+              )}
+              <DropComponentUI nodes={props.children} preview={props.preview} />
             </div>
-            <ToolBarHeader
-              // orderNumber={props.orderNumber}
-              nameItemToolbox="Container"
-            />
+            {!props.preview && (
+              <ToolBarHeader
+                orderNumber={props.birthOrder}
+                nameItemToolbox="Container"
+              />
+            )}
           </div>
           <div>
-            <DropZone level={props.level} birthOrder={props.birthOrder} />
+            {!props.preview && (
+              <DropZone level={props.level} birthOrder={props.birthOrder} />
+            )}
           </div>
         </>
       );
@@ -180,17 +186,21 @@ function ItemContent(props, { child }) {
     case "15":
       return (
         <>
-          <div className="ItemContent_Controls">
+          <div className="ItemContent_Controls ItemContent_Controls_header">
             <div className="ItemContent_Header">
               <Header size="large">Header</Header>
             </div>
-            <ToolBarHeader
-              // orderNumber={props.orderNumber}
-              nameItemToolbox="Header"
-            />
+            {!props.preview && (
+              <ToolBarHeader
+                orderNumber={props.birthOrder}
+                nameItemToolbox="Header"
+              />
+            )}
           </div>
           <div>
-            <DropZone level={props.level} birthOrder={props.birthOrder} />
+            {!props.preview && (
+              <DropZone level={props.level} birthOrder={props.birthOrder} />
+            )}
           </div>
         </>
       );
@@ -202,13 +212,17 @@ function ItemContent(props, { child }) {
               <Label>Input</Label>
               <Input value="" fluid />
             </div>
-            <ToolBarHeader
-              // orderNumber={props.orderNumber}
-              nameItemToolbox="Input"
-            />
+            {!props.preview && (
+              <ToolBarHeader
+                orderNumber={props.birthOrder}
+                nameItemToolbox="Input"
+              />
+            )}
           </div>
           <div>
-            <DropZone level={props.level} birthOrder={props.birthOrder} />
+            {!props.preview && (
+              <DropZone level={props.level} birthOrder={props.birthOrder} />
+            )}
           </div>
         </>
       );
@@ -220,13 +234,17 @@ function ItemContent(props, { child }) {
               <Label>NumberFormat</Label>
               <Input value="" fluid />
             </div>
-            <ToolBarHeader
-              // orderNumber={props.orderNumber}
-              nameItemToolbox="NumberFormat"
-            />
+            {!props.preview && (
+              <ToolBarHeader
+                orderNumber={props.birthOrder}
+                nameItemToolbox="NumberFormat"
+              />
+            )}
           </div>
           <div>
-            <DropZone level={props.level} birthOrder={props.birthOrder} />
+            {!props.preview && (
+              <DropZone level={props.level} birthOrder={props.birthOrder} />
+            )}
           </div>
         </>
       );
@@ -240,13 +258,17 @@ function ItemContent(props, { child }) {
                 <TextArea value="" />
               </Form>
             </div>
-            <ToolBarHeader
-              // orderNumber={props.orderNumber}
-              nameItemToolbox="TextArea"
-            />
+            {!props.preview && (
+              <ToolBarHeader
+                orderNumber={props.birthOrder}
+                nameItemToolbox="TextArea"
+              />
+            )}
           </div>
           <div>
-            <DropZone level={props.level} birthOrder={props.birthOrder} />
+            {!props.preview && (
+              <DropZone level={props.level} birthOrder={props.birthOrder} />
+            )}
           </div>
         </>
       );
@@ -258,13 +280,17 @@ function ItemContent(props, { child }) {
               <Label>Dictionary</Label>
               <Input value="" fluid />
             </div>
-            <ToolBarHeader
-              // orderNumber={props.orderNumber}
-              nameItemToolbox="Dictionary"
-            />
+            {!props.preview && (
+              <ToolBarHeader
+                orderNumber={props.birthOrder}
+                nameItemToolbox="Dictionary"
+              />
+            )}
           </div>
           <div>
-            <DropZone level={props.level} birthOrder={props.birthOrder} />
+            {!props.preview && (
+              <DropZone level={props.level} birthOrder={props.birthOrder} />
+            )}
           </div>
         </>
       );
@@ -275,13 +301,17 @@ function ItemContent(props, { child }) {
             <div className="ItemContent_TreePicker">
               <Label>TreePicker</Label>
             </div>
-            <ToolBarHeader
-              // orderNumber={props.orderNumber}
-              nameItemToolbox="TreePicker"
-            />
+            {!props.preview && (
+              <ToolBarHeader
+                orderNumber={props.birthOrder}
+                nameItemToolbox="TreePicker"
+              />
+            )}
           </div>
           <div>
-            <DropZone level={props.level} birthOrder={props.birthOrder} />
+            {!props.preview && (
+              <DropZone level={props.level} birthOrder={props.birthOrder} />
+            )}
           </div>
         </>
       );
@@ -293,13 +323,17 @@ function ItemContent(props, { child }) {
               <Label>Dropdown</Label>
               <Dropdown fluid selection options={sampleOption} />
             </div>
-            <ToolBarHeader
-              // orderNumber={props.orderNumber}
-              nameItemToolbox="Dropdown"
-            />
+            {!props.preview && (
+              <ToolBarHeader
+                orderNumber={props.birthOrder}
+                nameItemToolbox="Dropdown"
+              />
+            )}
           </div>
           <div>
-            <DropZone level={props.level} birthOrder={props.birthOrder} />
+            {!props.preview && (
+              <DropZone level={props.level} birthOrder={props.birthOrder} />
+            )}
           </div>
         </>
       );
@@ -313,13 +347,17 @@ function ItemContent(props, { child }) {
                 <Checkbox label="Check box" />
               </div>
             </div>
-            <ToolBarHeader
-              // orderNumber={props.orderNumber}
-              nameItemToolbox="Checkbox"
-            />
+            {!props.preview && (
+              <ToolBarHeader
+                orderNumber={props.birthOrder}
+                nameItemToolbox="Checkbox"
+              />
+            )}
           </div>
           <div>
-            <DropZone level={props.level} birthOrder={props.birthOrder} />
+            {!props.preview && (
+              <DropZone level={props.level} birthOrder={props.birthOrder} />
+            )}
           </div>
         </>
       );
@@ -343,13 +381,17 @@ function ItemContent(props, { child }) {
                 </Form.Group>
               </Form>
             </div>
-            <ToolBarHeader
-              // orderNumber={props.orderNumber}
-              nameItemToolbox="RadioGroup"
-            />
+            {!props.preview && (
+              <ToolBarHeader
+                orderNumber={props.birthOrder}
+                nameItemToolbox="RadioGroup"
+              />
+            )}
           </div>
           <div>
-            <DropZone level={props.level} birthOrder={props.birthOrder} />
+            {!props.preview && (
+              <DropZone level={props.level} birthOrder={props.birthOrder} />
+            )}
           </div>
         </>
       );
@@ -363,13 +405,17 @@ function ItemContent(props, { child }) {
                 <Button primary>Button</Button>
               </div>
             </div>
-            <ToolBarHeader
-              // orderNumber={props.orderNumber}
-              nameItemToolbox="Button"
-            />
+            {!props.preview && (
+              <ToolBarHeader
+                orderNumber={props.birthOrder}
+                nameItemToolbox="Button"
+              />
+            )}
           </div>
           <div>
-            <DropZone level={props.level} birthOrder={props.birthOrder} />
+            {!props.preview && (
+              <DropZone level={props.level} birthOrder={props.birthOrder} />
+            )}
           </div>
         </>
       );
@@ -380,13 +426,17 @@ function ItemContent(props, { child }) {
             <div className="ItemContent_Label">
               <Label>Label</Label>
             </div>
-            <ToolBarHeader
-              // orderNumber={props.orderNumber}
-              nameItemToolbox="Label"
-            />
+            {!props.preview && (
+              <ToolBarHeader
+                orderNumber={props.birthOrder}
+                nameItemToolbox="Label"
+              />
+            )}
           </div>
           <div>
-            <DropZone level={props.level} birthOrder={props.birthOrder} />
+            {!props.preview && (
+              <DropZone level={props.level} birthOrder={props.birthOrder} />
+            )}
           </div>
         </>
       );

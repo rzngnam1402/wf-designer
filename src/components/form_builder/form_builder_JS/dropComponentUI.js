@@ -1,6 +1,6 @@
 import ItemContent from "./ItemContent";
 
-function DropComponentUI({ nodes }) {
+function DropComponentUI({ nodes, preview }) {
   return (
     <>
       {console.log("TotalNode.node", nodes)}
@@ -12,6 +12,7 @@ function DropComponentUI({ nodes }) {
               birthOrder={objectNode.dopzoneCurrent.birthOrder}
               id={objectNode.idName}
               children={objectNode.children}
+              preview={preview}
             />
           </div>
         );
