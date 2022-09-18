@@ -118,8 +118,8 @@ function DropZone(props) {
       setCheckDrop("");
 
       const countDropChild = DropZoneContent.id === "2" ? 2 : 1;
-      orderNumberItem.IncreaseValueOrder();
       OrderDropzoneBorn += countDropChild;
+      orderNumberItem.IncreaseValueOrder(OrderDropzoneBorn);
 
       // logic nay chi mang tinh viet cho nhanh, can hoan thanh sau khi logic lon nhat dung
       //ket thuc logic nhanh

@@ -57,10 +57,10 @@ const OderNumberitemDrop = createContext();
 
 function SetOderNumber({ children }) {
   // featured Function is initialized when use useContext hook
-  const [order, setOrder] = useState(1);
+  const [order, setOrder] = useState(0);
 
-  const IncreaseValueOrder = () => {
-    setOrder((prev) => prev + 1);
+  const IncreaseValueOrder = (value) => {
+    setOrder(value);
   };
 
   const ValueOrder = {

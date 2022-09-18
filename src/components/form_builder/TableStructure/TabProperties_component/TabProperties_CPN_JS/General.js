@@ -5,7 +5,9 @@ import "../TabProperties_CPN_CSS/General.css";
 import ChooseProperties from "./GeneralChoosePro";
 
 function General(props) {
-  // render general properties of total component
+  // ----------------------------------------------------
+  // Specifies the display position of each attribute element in the general tab
+  // ----------------------------------------------------
   const ComponentsForm = Object.entries(props);
 
   console.log(ComponentsForm);
@@ -15,7 +17,6 @@ function General(props) {
       <div className="form_grid">
         <Form.Field>
           {ComponentsForm.map((component, index) => {
-            console.log("Choose component", component[0], component[1]);
             return (
               component[1].render &&
               component[1].float === "left" &&
@@ -25,7 +26,6 @@ function General(props) {
         </Form.Field>
         <Form.Field>
           {ComponentsForm.map((component, index) => {
-            console.log("Choose component", component[0], component[1]);
             return (
               component[1].render &&
               component[1].float === "right" &&
@@ -36,7 +36,6 @@ function General(props) {
       </div>
       <Form.Field>
         {ComponentsForm.map((component, index) => {
-          console.log("Choose component", component[0], component[1]);
           return (
             component[1].render &&
             component[1].float === "none" &&

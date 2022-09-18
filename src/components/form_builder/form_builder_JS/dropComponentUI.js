@@ -3,7 +3,6 @@ import ItemContent from "./ItemContent";
 function DropComponentUI({ nodes, preview }) {
   return (
     <>
-      {console.log("TotalNode.node", nodes)}
       {nodes.map((objectNode) => {
         return (
           <div key={objectNode.dopzoneCurrent.birthOrder}>

@@ -4,6 +4,9 @@ import { itemToolboxGeneral } from "../../../form_builder_Provider/idItemProvide
 import General from "./General";
 
 function GeneralLayout() {
+  //----------------------------------------------------------
+  // Base on nameToolbox dropped => Choose properties need to display on general tab
+  //----------------------------------------------------------
   const ToolboxGeneral = useContext(itemToolboxGeneral);
 
   switch (ToolboxGeneral.nameToolbox) {

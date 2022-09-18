@@ -26,6 +26,10 @@ import TextAlign from "../General_component/General_component_JS/TextAlign";
 import Type from "../General_component/General_component_JS/Type";
 
 function ChooseProperties(nameComponent, index, nameItem) {
+  // -------------------------------------------------------------
+  // Choose properties follow nameItem of each attribute
+  // -------------------------------------------------------------
+
   switch (nameComponent) {
     case "Attached":
       return <Attached key={index} />;

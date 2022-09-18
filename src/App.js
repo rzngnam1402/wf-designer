@@ -17,11 +17,6 @@ function App() {
     const preview = $(".Preview");
     const formJson = $(".FormJson");
 
-    console.log("render", render);
-    console.log("FormBuilder", formBuilder[0].classList);
-    console.log("Preview", preview[0].classList);
-    console.log("FormJson", formJson[0].classList);
-
     switch (render) {
       case "formBuilder":
         formBuilder[0].classList.remove("None_Display");

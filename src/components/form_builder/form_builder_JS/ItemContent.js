@@ -22,8 +22,6 @@ function ItemContent(props) {
   // -----------------------------------------------
   // Return represent of dragged and dropped item
   // -----------------------------------------------
-  // const [checkHover, setCheckHover] = useState(false)
-  console.log("Dang xu ly Item content: ", props);
 
   const sampleOption = [
     {
@@ -57,7 +55,6 @@ function ItemContent(props) {
     case "2":
       return (
         <>
-          {console.log("Dang xu ly containersssssssssss: ", props)}
           <div className="ItemContent_containers">
             <div className="ItemContent_container">
               {!props.preview && (
@@ -72,6 +69,7 @@ function ItemContent(props) {
             {!props.preview && (
               <ToolBarHeader
                 orderNumber={props.birthOrder}
+                level={props.level}
                 nameItemToolbox="Container"
               />
             )}
@@ -193,6 +191,7 @@ function ItemContent(props) {
             {!props.preview && (
               <ToolBarHeader
                 orderNumber={props.birthOrder}
+                level={props.level}
                 nameItemToolbox="Header"
               />
             )}
@@ -215,6 +214,7 @@ function ItemContent(props) {
             {!props.preview && (
               <ToolBarHeader
                 orderNumber={props.birthOrder}
+                level={props.level}
                 nameItemToolbox="Input"
               />
             )}
@@ -237,6 +237,7 @@ function ItemContent(props) {
             {!props.preview && (
               <ToolBarHeader
                 orderNumber={props.birthOrder}
+                level={props.level}
                 nameItemToolbox="NumberFormat"
               />
             )}
@@ -261,6 +262,7 @@ function ItemContent(props) {
             {!props.preview && (
               <ToolBarHeader
                 orderNumber={props.birthOrder}
+                level={props.level}
                 nameItemToolbox="TextArea"
               />
             )}
@@ -283,6 +285,7 @@ function ItemContent(props) {
             {!props.preview && (
               <ToolBarHeader
                 orderNumber={props.birthOrder}
+                level={props.level}
                 nameItemToolbox="Dictionary"
               />
             )}
@@ -304,6 +307,7 @@ function ItemContent(props) {
             {!props.preview && (
               <ToolBarHeader
                 orderNumber={props.birthOrder}
+                level={props.level}
                 nameItemToolbox="TreePicker"
               />
             )}
@@ -326,6 +330,7 @@ function ItemContent(props) {
             {!props.preview && (
               <ToolBarHeader
                 orderNumber={props.birthOrder}
+                level={props.level}
                 nameItemToolbox="Dropdown"
               />
             )}
@@ -350,6 +355,7 @@ function ItemContent(props) {
             {!props.preview && (
               <ToolBarHeader
                 orderNumber={props.birthOrder}
+                level={props.level}
                 nameItemToolbox="Checkbox"
               />
             )}
@@ -384,6 +390,7 @@ function ItemContent(props) {
             {!props.preview && (
               <ToolBarHeader
                 orderNumber={props.birthOrder}
+                level={props.level}
                 nameItemToolbox="RadioGroup"
               />
             )}
@@ -408,6 +415,7 @@ function ItemContent(props) {
             {!props.preview && (
               <ToolBarHeader
                 orderNumber={props.birthOrder}
+                level={props.level}
                 nameItemToolbox="Button"
               />
             )}
@@ -429,6 +437,7 @@ function ItemContent(props) {
             {!props.preview && (
               <ToolBarHeader
                 orderNumber={props.birthOrder}
+                level={props.level}
                 nameItemToolbox="Label"
               />
             )}
