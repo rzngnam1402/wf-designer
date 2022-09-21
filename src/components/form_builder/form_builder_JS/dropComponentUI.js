@@ -1,6 +1,7 @@
 import ItemContent from "./ItemContent";
 
 function DropComponentUI({ nodes, preview }) {
+  console.log("node checking", nodes);
   return (
     <>
       {nodes.map((objectNode) => {

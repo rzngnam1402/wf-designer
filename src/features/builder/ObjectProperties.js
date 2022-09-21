@@ -6,8 +6,18 @@ export const objectProSlice = createSlice({
     value: "",
   },
   reducers: {
-    updateObjectPro: (state, action) => {
-      state.value = action.payload;
+    updateObjectPro: {
+      reducer(state, action) {
+        state.value = action.payload;
+      },
+      prepare(title, content) {
+        return {
+          payload: {
+            title,
+            content,
+          },
+        };
+      },
     },
   },
 });

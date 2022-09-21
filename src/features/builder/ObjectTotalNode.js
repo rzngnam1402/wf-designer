@@ -6,6 +6,9 @@ export const totalNodeSlice = createSlice({
     value: [],
   },
   reducers: {
+    updateNodeFirst: (state, action) => {
+      state.value = action.payload;
+    },
     updateNode: (state, action) => {
       state.value = action.payload;
     },
@@ -13,6 +16,6 @@ export const totalNodeSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { updateNode } = totalNodeSlice.actions;
+export const { updateNode, updateNodeFirst } = totalNodeSlice.actions;
 
 export default totalNodeSlice.reducer;

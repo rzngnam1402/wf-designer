@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { update } from "../../../features/builder/IdItemInsert.js";
+import { updateIdItem } from "../../../features/builder/IdItemInsert.js";
 
 function ToolBoxItem({ listItem }) {
   // ----------------------
@@ -38,11 +38,11 @@ function ToolBoxItem({ listItem }) {
             draggable
             onDragStart={() => {
               handleDragStart();
-              dispatch(update(item.id));
+              dispatch(updateIdItem(item.id));
             }}
             onDragEnd={(e) => {
               handleDragEnd(e);
-              dispatch(update(""));
+              dispatch(updateIdItem(""));
             }}
           >
             {item.content}

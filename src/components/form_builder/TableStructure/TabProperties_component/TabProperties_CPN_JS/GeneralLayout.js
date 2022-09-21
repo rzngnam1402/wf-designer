@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 
-import { itemToolboxGeneral } from "../../../form_builder_Provider/idItemProvider";
 import General from "./General";
 
 function GeneralLayout() {

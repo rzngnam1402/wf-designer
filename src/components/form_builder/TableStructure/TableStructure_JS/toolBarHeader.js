@@ -4,9 +4,9 @@ import "../TableStructure_CSS/toolBarHeader.css";
 
 import { updateModal } from "../../../../features/builder/CheckModal.js";
 import { updateSave } from "../../../../features/builder/ButtonSave.js";
-import { updateitemTBGeneral } from "../../../../features/builder/ItemToolboxGeneral.js";
-import { updateNode } from "../../../features/builder/ObjectTotalNode.js";
-import { incrementDropzone } from "../../../features/builder/ONDropzoneBorn.js";
+import { updateItemTBGeneral } from "../../../../features/builder/ItemToolboxGeneral.js";
+import { updateNode } from "../../../../features/builder/ObjectTotalNode.js";
+import { incrementDropzone } from "../../../../features/builder/ONDropzoneBorn.js";
 
 function ToolBarHeader(props) {
   // --------------------------------------------------------------------
@@ -19,6 +19,8 @@ function ToolBarHeader(props) {
   const itemTBGen = useSelector((state) => state.itemTBGeneral.value);
   const dropzoneBorn = useSelector((state) => state.dropzoneBorn.value);
   const totalNode = useSelector((state) => state.totalNode.value);
+
+  const totalObject = JSON.parse(JSON.stringify(totalNode));
 
   const deleteObject = (array, birth, level) => {
     let indexNode = 0;
@@ -70,6 +72,7 @@ function ToolBarHeader(props) {
         }
       }
     });
+
     return array;
   };
 
@@ -89,7 +92,7 @@ function ToolBarHeader(props) {
             })
           );
 
-          dispatch(updateitemTBGeneral(props.nameItemToolbox));
+          dispatch(updateItemTBGeneral(props.nameItemToolbox));
         }}
       ></i>
       <i
@@ -97,7 +100,7 @@ function ToolBarHeader(props) {
         onClick={() => {
           dispatch(
             updateNode([
-              ...copyObject(totalNode, props.orderNumber, props.level),
+              ...copyObject(totalObject, props.orderNumber, props.level),
             ])
           );
         }}
@@ -107,7 +110,7 @@ function ToolBarHeader(props) {
         onClick={() => {
           dispatch(
             updateNode([
-              ...deleteObject(totalNode, props.orderNumber, props.level),
+              ...deleteObject(totalObject, props.orderNumber, props.level),
             ])
           );
         }}

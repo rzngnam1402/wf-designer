@@ -1,22 +1,22 @@
-import { useEffect, useState, useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { useEffect, useState } from "react";
 import { Form } from "semantic-ui-react";
 
-import { BtnSave } from "../../../../form_builder_Provider/idItemProvider";
-import { ObjectProperties } from "../../../../form_builder_Provider/idItemProvider";
-import { GeneralProperties } from "../../../../form_builder_Provider/idItemProvider";
+import { updateSave } from "../../../../../../features/builder/ButtonSave.js";
+import { updateGeneralPro } from "../../../../../../features/builder/GeneralProperties";
 
 function Name(props) {
-  const [valuePro, setValuePro] = useState("");
+  const dispatch = useDispatch();
 
-  const ProSave = useContext(BtnSave);
-  const Proper = useContext(GeneralProperties);
+  const checkSave = useSelector((state) => state.btnSave.value);
+
+  const [valuePro, setValuePro] = useState("");
 
   useEffect(() => {
     if (props.keyId) {
-      // Proper.properties = { ...Proper.properties, [props.keyId]: valuePro };
-      // Proper.SetValueProperties((prev) => ({ ...prev, Name: valuePro }));
     }
-  }, [ProSave.save]);
+  }, [checkSave]);
 
   return (
     <Form.Field>

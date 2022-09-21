@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { memo } from "react";
-// import { useCallback } from "react";
 
 import "../form_builder_CSS/dropZone.css";
-// import ItemContent from "./ItemContent";
-// import DropAddition from "./dropAddition";
 
-import { update } from "../../../features/builder/IdItemInsert.js";
+import { updateIdItem } from "../../../features/builder/IdItemInsert.js";
 import { incrementDropzone } from "../../../features/builder/ONDropzoneBorn.js";
-import { updateNode } from "../../../features/builder/ObjectTotalNode.js";
+import {
+  updateNode,
+  updateNodeFirst,
+} from "../../../features/builder/ObjectTotalNode.js";
 
 var OrderDropzoneBorn = 0;
 
@@ -33,6 +32,8 @@ function DropZone(props) {
   const idItemInsert = useSelector((state) => state.idItem.value);
   const dropzoneBorn = useSelector((state) => state.dropzoneBorn.value);
   const totalNode = useSelector((state) => state.totalNode.value);
+
+  const totalObject = JSON.parse(JSON.stringify(totalNode));
 
   var fakeContext;
 
@@ -138,7 +139,7 @@ function DropZone(props) {
       } else {
         if (props.first) {
           fakeContext = FindDropzone(
-            totalNode,
+            totalObject,
             props.birthOrder + 1,
             countDropChild,
             props.level,
@@ -149,7 +150,7 @@ function DropZone(props) {
         //TH2: drop on node that difference first node
         else {
           fakeContext = FindDropzone(
-            totalNode,
+            totalObject,
             props.birthOrder,
             countDropChild,
             props.level,
@@ -165,7 +166,7 @@ function DropZone(props) {
 
   useEffect(() => {
     if (NodeInsertCurrent.idParent !== "" && props.first && props.level === 1) {
-      dispatch(updateNode((prev) => [NodeInsertCurrent, ...prev]));
+      dispatch(updateNode([NodeInsertCurrent, ...totalNode]));
     }
   }, [NodeInsertCurrent]);
 

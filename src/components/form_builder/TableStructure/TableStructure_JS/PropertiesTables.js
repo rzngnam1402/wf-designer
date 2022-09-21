@@ -1,7 +1,12 @@
 import { useDispatch } from "react-redux";
+
 import { Label, Button } from "semantic-ui-react";
 
 import "../TableStructure_CSS/PropertiesTables.css";
+
+import { updateSave } from "../../../../features/builder/ButtonSave.js";
+import { updateCancelSave } from "../../../../features/builder/ButtonCancelSave";
+
 import DescriptionTable from "./DescriptionTable";
 
 function PropertiesTables(props) {

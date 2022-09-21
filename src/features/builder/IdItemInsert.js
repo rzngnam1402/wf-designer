@@ -6,13 +6,13 @@ export const idItemInsertSlice = createSlice({
     value: "",
   },
   reducers: {
-    update: (state, action) => {
+    updateIdItem: (state, action) => {
       state.value = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { update } = idItemInsertSlice.actions;
+export const { updateIdItem } = idItemInsertSlice.actions;
 
 export default idItemInsertSlice.reducer;
