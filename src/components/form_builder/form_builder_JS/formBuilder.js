@@ -1,4 +1,5 @@
 import "../form_builder_CSS/formBuilder.css";
+
 import FormBuilderContent from "./formBuilderContent";
 import ToolBox from "./toolBox";
 
@@ -12,7 +13,7 @@ function FormBuilder() {
   return (
     <>
       <div className="FormBuilderContainer">
-        <div>
+        <div className="FormBuiderContentContainer">
           <FormBuilderContent />
         </div>
         <ToolBox />

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useSelector } from "react-redux";
 
 import { itemToolboxGeneral } from "../../../form_builder_Provider/idItemProvider";
 import General from "./General";
@@ -7,9 +7,9 @@ function GeneralLayout() {
   //----------------------------------------------------------
   // Base on nameToolbox dropped => Choose properties need to display on general tab
   //----------------------------------------------------------
-  const ToolboxGeneral = useContext(itemToolboxGeneral);
+  const itemTBGen = useSelector((state) => state.itemTBGeneral.value);
 
-  switch (ToolboxGeneral.nameToolbox) {
+  switch (itemTBGen) {
     case "Container":
       return (
         <General

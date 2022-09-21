@@ -1,5 +1,6 @@
-import { IdItemInsertContext } from "../form_builder_Provider/idItemProvider";
-import { useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { update } from "../../../features/builder/IdItemInsert.js";
 
 function ToolBoxItem({ listItem }) {
   // ----------------------
@@ -9,7 +10,7 @@ function ToolBoxItem({ listItem }) {
   // HandleDragStart: handle event: Drag Start
   // HandleDragEnd: handle event: Drag End
   // -----------------------
-  const ItemBoxContent = useContext(IdItemInsertContext);
+  const dispatch = useDispatch();
 
   const handleDragStart = () => {
     const dropZones = [...document.getElementsByClassName("dropZone")];
@@ -37,11 +38,11 @@ function ToolBoxItem({ listItem }) {
             draggable
             onDragStart={() => {
               handleDragStart();
-              ItemBoxContent.setValueId(item.id);
+              dispatch(update(item.id));
             }}
             onDragEnd={(e) => {
               handleDragEnd(e);
-              ItemBoxContent.setValueId("");
+              dispatch(update(""));
             }}
           >
             {item.content}

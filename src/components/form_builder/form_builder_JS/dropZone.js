@@ -1,4 +1,5 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 // import { memo } from "react";
 // import { useCallback } from "react";
 
@@ -6,11 +7,9 @@ import "../form_builder_CSS/dropZone.css";
 // import ItemContent from "./ItemContent";
 // import DropAddition from "./dropAddition";
 
-import { IdItemInsertContext } from "../form_builder_Provider/idItemProvider";
-import { OderNumberitemDrop } from "../form_builder_Provider/idItemProvider";
-// import { OrderDropzoneBorn } from "../form_builder_Provider/idItemProvider";
-import { ObjectTotalNode } from "../form_builder_Provider/idItemProvider";
-// import { CheckRender } from "../form_builder_Provider/idItemProvider";
+import { update } from "../../../features/builder/IdItemInsert.js";
+import { incrementDropzone } from "../../../features/builder/ONDropzoneBorn.js";
+import { updateNode } from "../../../features/builder/ObjectTotalNode.js";
 
 var OrderDropzoneBorn = 0;
 
@@ -20,8 +19,8 @@ function DropZone(props) {
   // HandleDragOver: handle event: Drag Over
   // HandleDragLeave: handle event: Drag Leave
   // -------------------------------------------------------
+  const dispatch = useDispatch();
 
-  // const [checkRender, setCheckRender] = useState(false);
   const [checkDrop, setCheckDrop] = useState();
   const [checkOver, setCheckOver] = useState();
   const [NodeInsertCurrent, setNodeInsertCurrent] = useState({
@@ -31,11 +30,9 @@ function DropZone(props) {
     dopzoneCurrent: { level: "", birthOrder: "", dropChild: "" },
   });
 
-  const DropZoneContent = useContext(IdItemInsertContext);
-  const orderNumberItem = useContext(OderNumberitemDrop);
-  // const OrderDropzone = useContext(OrderDropzoneBorn);
-  const TotalNode = useContext(ObjectTotalNode);
-  // const checkRenderUI = useContext(CheckRender);
+  const idItemInsert = useSelector((state) => state.idItem.value);
+  const dropzoneBorn = useSelector((state) => state.dropzoneBorn.value);
+  const totalNode = useSelector((state) => state.totalNode.value);
 
   var fakeContext;
 
@@ -65,7 +62,7 @@ function DropZone(props) {
           // Set gia tri nodecurrent
           let nodeInsert = {
             idParent: "first",
-            idName: DropZoneContent.id,
+            idName: idItemInsert,
             children: [],
             dopzoneCurrent: {
               level: level,
@@ -81,7 +78,7 @@ function DropZone(props) {
 
           let nodeInsert = {
             idParent: "last",
-            idName: DropZoneContent.id,
+            idName: idItemInsert,
             children: [],
             dopzoneCurrent: {
               level: level,
@@ -117,9 +114,9 @@ function DropZone(props) {
     if (check) {
       setCheckDrop("");
 
-      const countDropChild = DropZoneContent.id === "2" ? 2 : 1;
+      const countDropChild = idItemInsert === "2" ? 2 : 1;
       OrderDropzoneBorn += countDropChild;
-      orderNumberItem.IncreaseValueOrder(OrderDropzoneBorn);
+      dispatch(incrementDropzone(OrderDropzoneBorn));
 
       // logic nay chi mang tinh viet cho nhanh, can hoan thanh sau khi logic lon nhat dung
       //ket thuc logic nhanh
@@ -129,7 +126,7 @@ function DropZone(props) {
         setNodeInsertCurrent(() => {
           return {
             idParent: "first",
-            idName: DropZoneContent.id,
+            idName: idItemInsert,
             children: [],
             dopzoneCurrent: {
               level: props.level,
@@ -141,7 +138,7 @@ function DropZone(props) {
       } else {
         if (props.first) {
           fakeContext = FindDropzone(
-            TotalNode.node,
+            totalNode,
             props.birthOrder + 1,
             countDropChild,
             props.level,
@@ -152,7 +149,7 @@ function DropZone(props) {
         //TH2: drop on node that difference first node
         else {
           fakeContext = FindDropzone(
-            TotalNode.node,
+            totalNode,
             props.birthOrder,
             countDropChild,
             props.level,
@@ -162,19 +159,18 @@ function DropZone(props) {
       }
     }
     if (fakeContext !== undefined) {
-      TotalNode.SetObjectNodeInsert([...fakeContext]);
+      dispatch(updateNode([...fakeContext]));
     }
   };
 
   useEffect(() => {
     if (NodeInsertCurrent.idParent !== "" && props.first && props.level === 1) {
-      TotalNode.SetObjectNodeInsert((prev) => [NodeInsertCurrent, ...prev]);
+      dispatch(updateNode((prev) => [NodeInsertCurrent, ...prev]));
     }
   }, [NodeInsertCurrent]);
 
   return (
     <>
-      {/* {console.log("Object dang tim: ", TotalNode.node)} */}
       <div
         className={`dropZone notDrag ${props.class}`}
         onDragOver={(e) => {

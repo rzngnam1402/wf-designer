@@ -1,16 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+// redux
+import { Provider } from "react-redux";
+import store from "./app/store";
+
+// CSS
 import "./index.css";
+
 import App from "./App";
-import { IdItemProvider } from "./components/form_builder/form_builder_Provider/idItemProvider";
-import { ModalProperties } from "./components/form_builder/form_builder_Provider/idItemProvider";
-import { SetOderNumber } from "./components/form_builder/form_builder_Provider/idItemProvider";
-import { SetOrderDropzoneBorn } from "./components/form_builder/form_builder_Provider/idItemProvider";
-import { SetItemToolboxGeneral } from "./components/form_builder/form_builder_Provider/idItemProvider";
-import { SetObjectTotalNode } from "./components/form_builder/form_builder_Provider/idItemProvider";
-import { SetCheckRender } from "./components/form_builder/form_builder_Provider/idItemProvider";
-import { SetPreview } from "./components/form_builder/form_builder_Provider/idItemProvider";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 //  Import FontAwesome 5
@@ -19,23 +17,7 @@ import "semantic-ui-css/semantic.min.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  // <React.StrictMode>
-  <IdItemProvider>
-    <ModalProperties>
-      <SetOderNumber>
-        <SetOrderDropzoneBorn>
-          <SetItemToolboxGeneral>
-            <SetObjectTotalNode>
-              <SetCheckRender>
-                <SetPreview>
-                  <App />
-                </SetPreview>
-              </SetCheckRender>
-            </SetObjectTotalNode>
-          </SetItemToolboxGeneral>
-        </SetOrderDropzoneBorn>
-      </SetOderNumber>
-    </ModalProperties>
-  </IdItemProvider>
-  // </React.StrictMode>
+  <Provider store={store}>
+    <App />
+  </Provider>
 );

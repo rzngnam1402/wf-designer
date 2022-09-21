@@ -1,13 +1,12 @@
-import { useContext } from "react";
+import { useDispatch } from "react-redux";
 import { Label, Button } from "semantic-ui-react";
 
 import "../TableStructure_CSS/PropertiesTables.css";
 import DescriptionTable from "./DescriptionTable";
-import { checkModal } from "../../form_builder_Provider/idItemProvider";
 
 function PropertiesTables(props) {
   // render table inside modal
-  const ButtonToggleModal = useContext(checkModal);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -23,10 +22,8 @@ function PropertiesTables(props) {
         <Button
           primary
           onClick={() => {
-            ButtonToggleModal.setValueToggleModal({
-              check: false,
-              nameItem: "",
-            });
+            dispatch(updateSave(false));
+            // viet function xu ly thuoc tinh component o day
           }}
         >
           Save
@@ -34,10 +31,7 @@ function PropertiesTables(props) {
         <Button
           secondary
           onClick={() => {
-            ButtonToggleModal.setValueToggleModal({
-              check: false,
-              nameItem: "",
-            });
+            dispatch(updateCancelSave(true));
           }}
         >
           Cancel

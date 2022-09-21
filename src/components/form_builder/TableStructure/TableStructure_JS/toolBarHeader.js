@@ -1,19 +1,24 @@
-import { useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import "../TableStructure_CSS/toolBarHeader.css";
-import { checkModal } from "../../form_builder_Provider/idItemProvider";
-import { itemToolboxGeneral } from "../../form_builder_Provider/idItemProvider";
-import { ObjectTotalNode } from "../../form_builder_Provider/idItemProvider";
-import { OderNumberitemDrop } from "../../form_builder_Provider/idItemProvider";
+
+import { updateModal } from "../../../../features/builder/CheckModal.js";
+import { updateSave } from "../../../../features/builder/ButtonSave.js";
+import { updateitemTBGeneral } from "../../../../features/builder/ItemToolboxGeneral.js";
+import { updateNode } from "../../../features/builder/ObjectTotalNode.js";
+import { incrementDropzone } from "../../../features/builder/ONDropzoneBorn.js";
 
 function ToolBarHeader(props) {
   // --------------------------------------------------------------------
   // render toolbar of each component inside form is properties modifier
   // --------------------------------------------------------------------
-  const ModifiedProperties = useContext(checkModal);
-  const TotalNode = useContext(ObjectTotalNode);
-  const ToolboxGeneral = useContext(itemToolboxGeneral);
-  const orderNumberItem = useContext(OderNumberitemDrop);
+  const dispatch = useDispatch();
+
+  const CheckOpen = useSelector((state) => state.checkModal.value);
+  // const checkSave = useSelector((state) => state.btnSave.value);
+  const itemTBGen = useSelector((state) => state.itemTBGeneral.value);
+  const dropzoneBorn = useSelector((state) => state.dropzoneBorn.value);
+  const totalNode = useSelector((state) => state.totalNode.value);
 
   const deleteObject = (array, birth, level) => {
     let indexNode = 0;
@@ -43,9 +48,8 @@ function ToolBarHeader(props) {
 
       // Neu tim ra Object
       if (ele.dopzoneCurrent.birthOrder === birth) {
-        let OrderDropzoneBorn =
-          orderNumberItem.order + ele.dopzoneCurrent.dropChild;
-        orderNumberItem.IncreaseValueOrder(OrderDropzoneBorn);
+        let OrderDropzoneBorn = dropzoneBorn + ele.dopzoneCurrent.dropChild;
+        dispatch(incrementDropzone(OrderDropzoneBorn));
         const eleInsert = {
           idParent: ele.idParent,
           idName: ele.idName,
@@ -76,28 +80,36 @@ function ToolBarHeader(props) {
       <i
         className="fa-solid fa-pen-to-square"
         onClick={() => {
-          ModifiedProperties.setValueToggleModal({
-            check: true,
-            nameItem: props.nameItemToolbox,
-          });
+          dispatch(
+            updateModal({
+              check: true,
+              nameItem: props.nameItemToolbox,
+              orderBirth: props.orderNumber,
+              level: props.level,
+            })
+          );
 
-          ToolboxGeneral.SetValueNameToolbox(props.nameItemToolbox);
+          dispatch(updateitemTBGeneral(props.nameItemToolbox));
         }}
       ></i>
       <i
         className="fa-solid fa-copy"
         onClick={() => {
-          TotalNode.SetObjectNodeInsert([
-            ...copyObject(TotalNode.node, props.orderNumber, props.level),
-          ]);
+          dispatch(
+            updateNode([
+              ...copyObject(totalNode, props.orderNumber, props.level),
+            ])
+          );
         }}
       ></i>
       <i
         className="fa-solid fa-trash-can"
         onClick={() => {
-          TotalNode.SetObjectNodeInsert([
-            ...deleteObject(TotalNode.node, props.orderNumber, props.level),
-          ]);
+          dispatch(
+            updateNode([
+              ...deleteObject(totalNode, props.orderNumber, props.level),
+            ])
+          );
         }}
       ></i>
     </div>

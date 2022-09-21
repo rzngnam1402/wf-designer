@@ -1,0 +1,19 @@
+.Modal_inside {
+    padding: 21px;
+    height: auto
+}
+
+.Modal_inside_container {
+    position: relative;
+}
+
+.Label_common {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.Modal_inside_action {
+    text-align: right;
+    padding: 15px;
+}

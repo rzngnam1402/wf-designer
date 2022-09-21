@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import "../form_builder_CSS/toolBox.css";
+
 import ToolBoxItem from "./toolBoxItem";
 
 // Initialize 5 variables include title and item in toolbox via object

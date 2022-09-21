@@ -1,9 +1,9 @@
-import { useContext } from "react";
+import { useSelector } from "react-redux";
+
 import DropComponentUI from "./dropComponentUI";
-import { ObjectTotalNode } from "../form_builder_Provider/idItemProvider";
 
 function Preview() {
-  const TotalNode = useContext(ObjectTotalNode);
+  const totalNode = useSelector((state) => state.totalNode.value);
 
   return (
     <>
@@ -11,7 +11,7 @@ function Preview() {
         <h1>Day la Preview</h1>
       </div>
       <div>
-        <DropComponentUI nodes={TotalNode.node} preview={true} />
+        <DropComponentUI nodes={totalNode} preview={true} />
       </div>
     </>
   );

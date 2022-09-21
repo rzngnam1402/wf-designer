@@ -1,6 +1,21 @@
+import { useEffect, useState, useContext } from "react";
 import { Form, Dropdown } from "semantic-ui-react";
 
-function Size() {
+import { BtnSave } from "../../../../form_builder_Provider/idItemProvider";
+import { GeneralProperties } from "../../../../form_builder_Provider/idItemProvider";
+
+function Size(props) {
+  const [valuePro, setValuePro] = useState("");
+
+  const ProSave = useContext(BtnSave);
+  const Proper = useContext(GeneralProperties);
+
+  useEffect(() => {
+    if (props.keyId !== false) {
+      Proper.SetValueProperties((prev) => ({ ...prev, Size: valuePro }));
+    }
+  }, [ProSave.save]);
+
   const options = [
     { key: "1", text: "Default", value: "Default" },
     { key: "2", text: "Mini", value: "Mini" },
@@ -14,7 +29,16 @@ function Size() {
   return (
     <Form.Field>
       <label className="General_Extra_View_label">Size</label>
-      <Dropdown placeholder="State" fluid selection options={options} />
+      <Dropdown
+        placeholder="State"
+        fluid
+        selection
+        options={options}
+        value={valuePro}
+        onChange={(e) => {
+          setValuePro(e.target.value);
+        }}
+      />
     </Form.Field>
   );
 }

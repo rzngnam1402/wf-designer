@@ -1,3 +1,4 @@
-.formBuiderContent_Container {
-    width: 1000px;
+.formBuiderContent {
+  max-width: 1000px;
+  height: 100%;
 }

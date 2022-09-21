@@ -1,7 +1,8 @@
 import { useState, useContext } from "react";
 
-import DropZone from "./dropZone";
 import "../form_builder_CSS/formBuilderContent.css";
+
+import DropZone from "./dropZone";
 import DropComponentUI from "./dropComponentUI";
 
 import { ObjectTotalNode } from "../form_builder_Provider/idItemProvider";
@@ -14,7 +15,7 @@ function FormBuilderContent() {
 
   return (
     <>
-      <div className="formBuiderContent_Container">
+      <div className="formBuiderContent">
         {console.log("TotalNode.node_drop", TotalNode.node)}
         <DropZone level={1} birthOrder="0" first={true} />
         <DropComponentUI nodes={TotalNode.node} />

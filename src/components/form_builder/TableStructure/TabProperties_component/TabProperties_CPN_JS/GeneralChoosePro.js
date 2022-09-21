@@ -2,9 +2,7 @@ import Attached from "../General_component/General_component_JS/Attached";
 import ChildrenContainerView from "../General_component/General_component_JS/ChildrenContainerView";
 import Content from "../General_component/General_component_JS/Content";
 import Data from "../General_component/General_component_JS/Data";
-import Display from "../General_component/General_component_JS/Display";
 import FileProperties from "../General_component/General_component_JS/FileProperties";
-import Float from "../General_component/General_component_JS/Float";
 import Floated from "../General_component/General_component_JS/Floated";
 import Format from "../General_component/General_component_JS/Format";
 import GroupDirection from "../General_component/General_component_JS/GroupDirection";
@@ -32,57 +30,53 @@ function ChooseProperties(nameComponent, index, nameItem) {
 
   switch (nameComponent) {
     case "Attached":
-      return <Attached key={index} />;
+      return <Attached key={index} keyId={nameComponent} />;
     case "ChildrenContainerView":
-      return <ChildrenContainerView key={index} />;
+      return <ChildrenContainerView key={index} keyId={nameComponent} />;
     case "Content":
-      return <Content key={index} />;
+      return <Content key={index} keyId={nameComponent} />;
     case "Data ":
-      return <Data key={index} />;
-    case "Display":
-      return <Display key={index} />;
+      return <Data key={index} keyId={nameComponent} />;
     case "FileProperties":
-      return <FileProperties key={index} />;
-    case "Float":
-      return <Float key={index} />;
+      return <FileProperties key={index} keyId={nameComponent} />;
     case "Floated":
-      return <Floated key={index} />;
+      return <Floated key={index} keyId={nameComponent} />;
     case "Format":
-      return <Format key={index} />;
+      return <Format key={index} keyId={nameComponent} />;
     case "GroupDirection":
-      return <GroupDirection key={index} />;
+      return <GroupDirection key={index} keyId={nameComponent} />;
     case "Icon":
-      return <Icon key={index} />;
+      return <Icon key={index} keyId={nameComponent} />;
     case "IconFileTypes":
-      return <IconFileTypes key={index} />;
+      return <IconFileTypes key={index} keyId={nameComponent} />;
     case "IdField":
-      return <IdField key={index} />;
+      return <IdField key={index} keyId={nameComponent} />;
     case "Label":
-      return <Label key={index} />;
+      return <Label key={index} keyId={nameComponent} />;
     case "LabelPosition":
-      return <LabelPosition key={index} />;
+      return <LabelPosition key={index} keyId={nameComponent} />;
     case "Mark":
-      return <Mark key={index} />;
+      return <Mark key={index} keyId={nameComponent} />;
     case "Name":
-      return <Name key={index} />;
+      return <Name key={index} keyId={nameComponent} />;
     case "Options":
-      return <Options key={index} nameItem={nameItem} />;
+      return <Options key={index} keyId={nameComponent} nameItem={nameItem} />;
     case "Placeholder":
-      return <Placeholder key={index} />;
+      return <Placeholder key={index} keyId={nameComponent} />;
     case "Prefix":
-      return <Prefix key={index} />;
+      return <Prefix key={index} keyId={nameComponent} />;
     case "Rows":
-      return <Rows key={index} />;
+      return <Rows key={index} keyId={nameComponent} />;
     case "Size":
-      return <Size key={index} />;
+      return <Size key={index} keyId={nameComponent} />;
     case "Subheader":
-      return <Subheader key={index} />;
+      return <Subheader key={index} keyId={nameComponent} />;
     case "Suffix":
-      return <Suffix key={index} />;
+      return <Suffix key={index} keyId={nameComponent} />;
     case "TextAlign":
-      return <TextAlign key={index} />;
+      return <TextAlign key={index} keyId={nameComponent} />;
     case "Type":
-      return <Type key={index} />;
+      return <Type key={index} keyId={nameComponent} />;
     default:
       return <div key={index}>Khong tim thay phan tu Content</div>;
   }

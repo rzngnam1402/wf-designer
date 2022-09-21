@@ -1,8 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Form, Checkbox } from "semantic-ui-react";
 
-function Type() {
+import { BtnSave } from "../../../../form_builder_Provider/idItemProvider";
+import { GeneralProperties } from "../../../../form_builder_Provider/idItemProvider";
+
+function Type(props) {
   const [stateCheckbox, setStateCheckbox] = useState("Text");
+
+  const ProSave = useContext(BtnSave);
+  const Proper = useContext(GeneralProperties);
+
+  useEffect(() => {
+    if (props.keyId !== false) {
+      Proper.SetValueProperties((prev) => ({ ...prev, Type: stateCheckbox }));
+    }
+  }, [ProSave.save]);
 
   return (
     <Form.Field>
