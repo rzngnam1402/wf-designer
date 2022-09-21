@@ -20,6 +20,7 @@ function ToolBarHeader(props) {
   const dropzoneBorn = useSelector((state) => state.dropzoneBorn.value);
   const totalNode = useSelector((state) => state.totalNode.value);
 
+  var OrderDropzoneBorn = dropzoneBorn;
   const totalObject = JSON.parse(JSON.stringify(totalNode));
 
   const deleteObject = (array, birth, level) => {
@@ -34,7 +35,7 @@ function ToolBarHeader(props) {
       } else {
         if (ele.children !== []) {
           if (level > ele.dopzoneCurrent.level) {
-            ele.children = deleteObject(ele.children, birth, level);
+            deleteObject(ele.children, birth, level);
           }
         }
       }
@@ -50,15 +51,19 @@ function ToolBarHeader(props) {
 
       // Neu tim ra Object
       if (ele.dopzoneCurrent.birthOrder === birth) {
-        let OrderDropzoneBorn = dropzoneBorn + ele.dopzoneCurrent.dropChild;
+        OrderDropzoneBorn += ele.dopzoneCurrent.dropChild;
+        let birthOrder = OrderDropzoneBorn;
+
+        let childrenArray = ele.children.slice(0, ele.children.length);
+
         dispatch(incrementDropzone(OrderDropzoneBorn));
         const eleInsert = {
           idParent: ele.idParent,
           idName: ele.idName,
-          children: [],
+          children: copyObjectChild(childrenArray),
           dopzoneCurrent: {
             level: ele.dopzoneCurrent.level,
-            birthOrder: OrderDropzoneBorn,
+            birthOrder: birthOrder,
             dropChild: ele.dopzoneCurrent.dropChild,
           },
         };
@@ -67,12 +72,37 @@ function ToolBarHeader(props) {
       } else {
         if (ele.children !== []) {
           if (level > ele.dopzoneCurrent.level) {
-            ele.children = copyObject(ele.children, birth, level);
+            copyObject(ele.children, birth, level);
           }
         }
       }
     });
 
+    return array;
+  };
+
+  const copyObjectChild = (array) => {
+    let indexNode = 0;
+    array.forEach((ele) => {
+      indexNode++;
+
+      OrderDropzoneBorn += ele.dopzoneCurrent.dropChild;
+      let birthOrder = OrderDropzoneBorn;
+      dispatch(incrementDropzone(OrderDropzoneBorn));
+
+      const eleInsert = {
+        idParent: ele.idParent,
+        idName: ele.idName,
+        children: ele.child ? copyObjectChild(ele.child) : [],
+        dopzoneCurrent: {
+          level: ele.dopzoneCurrent.level,
+          birthOrder: birthOrder,
+          dropChild: ele.dopzoneCurrent.dropChild,
+        },
+      };
+
+      array.splice(indexNode - 1, 1, eleInsert);
+    });
     return array;
   };
 

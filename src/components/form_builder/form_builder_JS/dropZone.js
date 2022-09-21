@@ -72,7 +72,8 @@ function DropZone(props) {
             },
           };
           // lien ket vao children
-          ele.children = [nodeInsert, ...ele.children];
+          ele.children.splice(0, 0, nodeInsert);
+          // ele.children = [nodeInsert, ...ele.children];
           return array;
         } else {
           // tao object cho node vua insert
@@ -94,13 +95,7 @@ function DropZone(props) {
       } else {
         if (ele.children !== []) {
           if (level > ele.dopzoneCurrent.level) {
-            ele.children = FindDropzone(
-              ele.children,
-              birth,
-              dropchildren,
-              level,
-              first
-            );
+            FindDropzone(ele.children, birth, dropchildren, level, first);
           }
         }
       }
@@ -117,6 +112,7 @@ function DropZone(props) {
 
       const countDropChild = idItemInsert === "2" ? 2 : 1;
       OrderDropzoneBorn += countDropChild;
+      console.log("OrderDropzoneBorn_dropzone", OrderDropzoneBorn);
       dispatch(incrementDropzone(OrderDropzoneBorn));
 
       // logic nay chi mang tinh viet cho nhanh, can hoan thanh sau khi logic lon nhat dung
