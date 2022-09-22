@@ -3,36 +3,33 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Form, Checkbox } from "semantic-ui-react";
 
-import { updateSave } from "../../../../../../features/builder/ButtonSave.js";
 import { updateGeneralPro } from "../../../../../../features/builder/GeneralProperties";
 
 function TextAlign(props) {
   const dispatch = useDispatch();
 
-  const checkSave = useSelector((state) => state.btnSave.value);
   const CheckOpen = useSelector((state) => state.checkModal.value);
   const GeneralPro = useSelector((state) => state.generalPro.value);
+  const allGenPro = useSelector((state) => state.allGenPro.value);
 
   var GenPro = JSON.parse(JSON.stringify(GeneralPro));
   var orderBirth = CheckOpen.orderBirth;
 
   const [stateCheckbox, setStateCheckbox] = useState(
-    GenPro[orderBirth] ? GenPro[orderBirth].TextAlign || "Left" : "Left"
+    allGenPro[orderBirth] ? allGenPro[orderBirth].TextAlign || "Left" : "Left"
   );
 
   useEffect(() => {
     if (props.keyId) {
       let tempObj = { TextAlign: stateCheckbox };
 
-      GenPro[orderBirth]
-        ? (GenPro[orderBirth] = { ...GenPro[orderBirth], ...tempObj })
-        : (GenPro = { ...GenPro, [orderBirth]: tempObj });
+      GenPro = { ...GenPro, ...tempObj };
 
       dispatch(updateGeneralPro({ ...GenPro }));
     }
 
     // dispatch(updateSave(false));
-  }, [checkSave]);
+  }, [stateCheckbox]);
 
   return (
     <Form.Field>

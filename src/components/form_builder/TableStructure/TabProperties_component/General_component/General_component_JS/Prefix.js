@@ -3,24 +3,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Form, Checkbox } from "semantic-ui-react";
 
-import { updateSave } from "../../../../../../features/builder/ButtonSave.js";
 import { updateGeneralPro } from "../../../../../../features/builder/GeneralProperties";
 
 function Prefix(props) {
   const dispatch = useDispatch();
 
-  const checkSave = useSelector((state) => state.btnSave.value);
   const CheckOpen = useSelector((state) => state.checkModal.value);
   const GeneralPro = useSelector((state) => state.generalPro.value);
+  const allGenPro = useSelector((state) => state.allGenPro.value);
 
   var GenPro = JSON.parse(JSON.stringify(GeneralPro));
   var orderBirth = CheckOpen.orderBirth;
 
   const [valuePro_1, setValuePro_1] = useState(
-    GenPro[orderBirth] ? GenPro[orderBirth].Name || "" : ""
+    allGenPro[orderBirth] ? allGenPro[orderBirth].Name || "" : ""
   );
   const [valuePro_2, setValuePro_2] = useState(
-    GenPro[orderBirth] ? GenPro[orderBirth].Name || false : false
+    allGenPro[orderBirth] ? allGenPro[orderBirth].Name || false : false
   );
 
   useEffect(() => {
@@ -28,23 +27,19 @@ function Prefix(props) {
       if (valuePro_2 === true) {
         let tempObj_1 = { Prefix: valuePro_1, ThousandSeparator: true };
 
-        GenPro[orderBirth]
-          ? (GenPro[orderBirth] = { ...GenPro[orderBirth], ...tempObj_1 })
-          : (GenPro = { ...GenPro, [orderBirth]: tempObj_1 });
+        GenPro = { ...GenPro, ...tempObj_1 };
 
         dispatch(updateGeneralPro({ ...GenPro }));
       } else {
         let tempObj_2 = { Prefix: valuePro_1, ThousandSeparator: false };
 
-        GenPro[orderBirth]
-          ? (GenPro[orderBirth] = { ...GenPro[orderBirth], ...tempObj_2 })
-          : (GenPro = { ...GenPro, [orderBirth]: tempObj_2 });
+        GenPro = { ...GenPro, ...tempObj_2 };
 
         dispatch(updateGeneralPro({ ...GenPro }));
       }
     }
     // dispatch(updateSave(false));
-  }, [checkSave]);
+  }, [valuePro_1, valuePro_2]);
   return (
     <>
       <Form.Field>

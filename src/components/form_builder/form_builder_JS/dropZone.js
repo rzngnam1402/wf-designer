@@ -5,10 +5,9 @@ import "../form_builder_CSS/dropZone.css";
 
 import { updateIdItem } from "../../../features/builder/IdItemInsert.js";
 import { incrementDropzone } from "../../../features/builder/ONDropzoneBorn.js";
-import {
-  updateNode,
-  updateNodeFirst,
-} from "../../../features/builder/ObjectTotalNode.js";
+import { updateNode } from "../../../features/builder/ObjectTotalNode.js";
+import { updateGeneralPro } from "../../../features/builder/GeneralProperties";
+import { updateAllGenPro } from "../../../features/builder/AllGenProperties.js";
 
 var OrderDropzoneBorn = 0;
 
@@ -30,12 +29,191 @@ function DropZone(props) {
   });
 
   const idItemInsert = useSelector((state) => state.idItem.value);
-  const dropzoneBorn = useSelector((state) => state.dropzoneBorn.value);
+  // const dropzoneBorn = useSelector((state) => state.dropzoneBorn.value);
   const totalNode = useSelector((state) => state.totalNode.value);
+  const allGenPro = useSelector((state) => state.allGenPro.value);
+  const GeneralPro = useSelector((state) => state.generalPro.value);
 
   const totalObject = JSON.parse(JSON.stringify(totalNode));
 
   var fakeContext;
+
+  const InitializeGenPro = (orderNumber, orderBirth) => {
+    //----------------------------------------------------------
+    // Base on nameToolbox dropped => Choose properties need to display on general tab
+    //----------------------------------------------------------
+    switch (orderNumber) {
+      case "2":
+        console.log("Day la 2");
+        dispatch(
+          updateAllGenPro({
+            ...allGenPro,
+            [orderBirth]: {
+              Name: "Container",
+              ChildrenContainerView: "None",
+              display: "Not set",
+              float: "None",
+            },
+          })
+        );
+        break;
+
+      case "15":
+        dispatch(
+          updateAllGenPro({
+            ...allGenPro,
+            [orderBirth]: {
+              Name: "Header",
+              Content: "Header Content",
+              Size: "Medium",
+              TextAlign: "Left",
+              Subheader: "",
+            },
+          })
+        );
+        break;
+
+      case "16":
+        dispatch(
+          updateAllGenPro({
+            ...allGenPro,
+            [orderBirth]: {
+              Name: "Input",
+              Type: "Text",
+              Options: { Fluid: true },
+              Label: "Input",
+              LabelPosition: "Default",
+              Placeholder: "",
+              Size: "Default",
+            },
+          })
+        );
+        break;
+
+      case "17":
+        dispatch(
+          updateAllGenPro({
+            ...allGenPro,
+            [orderBirth]: {
+              Name: "NumberFormat",
+              Format: "",
+              Prefix: "",
+              Label: "NumberFormat",
+              Suffix: "",
+              Placeholder: "",
+              Options: { Fluid: true },
+            },
+          })
+        );
+        break;
+
+      case "18":
+        dispatch(
+          updateAllGenPro({
+            ...allGenPro,
+            [orderBirth]: {
+              Name: "TextArea",
+              Rows: "3",
+              Label: "TextArea",
+              Placeholder: "",
+              Options: { ReadOnly: false },
+            },
+          })
+        );
+        break;
+
+      case "21":
+        dispatch(
+          updateAllGenPro({
+            ...allGenPro,
+            [orderBirth]: {
+              Name: "Dropdown",
+              Data: {},
+              Label: "Dropdown",
+              Placeholder: "",
+              Options: { Fluid: true, Selection: true },
+            },
+          })
+        );
+        break;
+
+      case "22":
+        dispatch(
+          updateAllGenPro({
+            ...allGenPro,
+            [orderBirth]: {
+              Name: "Checkbox",
+              Options: {},
+              Label: "Checkbox",
+            },
+          })
+        );
+        break;
+
+      case "23":
+        dispatch(
+          updateAllGenPro({
+            ...allGenPro,
+            [orderBirth]: {
+              Name: "RadioGroup",
+              Data: {},
+              Label: "Radio",
+              GroupDirection: "None",
+              GroupDirectionReadOnly: false,
+            },
+          })
+        );
+        break;
+
+      case "24":
+        dispatch(
+          updateAllGenPro({
+            ...allGenPro,
+            [orderBirth]: {
+              Name: "Button",
+              Content: "Button",
+              Options: {},
+              Icon: "",
+              Size: "Default",
+              Floated: "Default",
+            },
+          })
+        );
+        break;
+
+      case "25":
+        dispatch(
+          updateAllGenPro({
+            ...allGenPro,
+            [orderBirth]: {
+              Name: "Label",
+              Content: "Label",
+              Size: "Default",
+              Attached: "None",
+              Options: {},
+            },
+          })
+        );
+        break;
+
+      case "32":
+        dispatch(
+          updateAllGenPro({
+            ...allGenPro,
+            [orderBirth]: {
+              Name: "Files",
+              IconFileTypes: "",
+              IdField: "id",
+              FileProperties: {},
+            },
+          })
+        );
+        break;
+
+      default:
+        break;
+    }
+  };
 
   const handleDragOver = (e) => {
     e.preventDefault();
@@ -109,14 +287,11 @@ function DropZone(props) {
     let check = fakeCheckDrop === checkOver && fakeCheckDrop !== undefined;
     if (check) {
       setCheckDrop("");
-
-      const countDropChild = idItemInsert === "2" ? 2 : 1;
-      OrderDropzoneBorn += countDropChild;
-      console.log("OrderDropzoneBorn_dropzone", OrderDropzoneBorn);
-      dispatch(incrementDropzone(OrderDropzoneBorn));
-
       // logic nay chi mang tinh viet cho nhanh, can hoan thanh sau khi logic lon nhat dung
+      const countDropChild = idItemInsert === "2" ? 2 : 1;
       //ket thuc logic nhanh
+      OrderDropzoneBorn += countDropChild;
+      dispatch(incrementDropzone(OrderDropzoneBorn));
 
       // TH1: drop on first dropzone
       if (props.first && props.level === 1) {
@@ -158,6 +333,8 @@ function DropZone(props) {
     if (fakeContext !== undefined) {
       dispatch(updateNode([...fakeContext]));
     }
+    // Initialize GenPro after drop
+    InitializeGenPro(idItemInsert, OrderDropzoneBorn);
   };
 
   useEffect(() => {

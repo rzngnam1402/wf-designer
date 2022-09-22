@@ -3,36 +3,33 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Form, Checkbox } from "semantic-ui-react";
 
-import { updateSave } from "../../../../../../features/builder/ButtonSave.js";
 import { updateGeneralPro } from "../../../../../../features/builder/GeneralProperties";
 
 function Options(props) {
   const dispatch = useDispatch();
 
-  const checkSave = useSelector((state) => state.btnSave.value);
   const CheckOpen = useSelector((state) => state.checkModal.value);
   const GeneralPro = useSelector((state) => state.generalPro.value);
+  const allGenPro = useSelector((state) => state.allGenPro.value);
 
   var GenPro = JSON.parse(JSON.stringify(GeneralPro));
   var orderBirth = CheckOpen.orderBirth;
 
   const [valuePro, setValuePro] = useState(
-    GenPro[orderBirth] ? GenPro[orderBirth].Name || {} : {}
+    allGenPro[orderBirth] ? allGenPro[orderBirth].Name || {} : {}
   );
 
   useEffect(() => {
     if (props.keyId) {
       let tempObj = { Options: valuePro };
 
-      GenPro[orderBirth]
-        ? (GenPro[orderBirth] = { ...GenPro[orderBirth], ...tempObj })
-        : (GenPro = { ...GenPro, [orderBirth]: tempObj });
+      GenPro = { ...GenPro, ...tempObj };
 
       dispatch(updateGeneralPro({ ...GenPro }));
     }
 
     // dispatch(updateSave(false));
-  }, [checkSave]);
+  }, [valuePro]);
 
   return (
     <Form.Field>
@@ -43,8 +40,12 @@ function Options(props) {
             <Checkbox
               label="Multiple"
               value="Multiple"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Multiple: e.target.value }));
+              checked={valuePro.Multiple}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({
+                  ...prev,
+                  Multiple: data.checked,
+                }));
               }}
             />
           </Form.Field>
@@ -54,8 +55,9 @@ function Options(props) {
             <Checkbox
               label="Search"
               value="Search"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Search: e.target.value }));
+              check={valuePro.Search}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({ ...prev, Search: data.checked }));
               }}
             />
           </Form.Field>
@@ -65,8 +67,12 @@ function Options(props) {
             <Checkbox
               label="Clearable"
               value="Clearable"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Clearable: e.target.value }));
+              check={valuePro.Clearable}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({
+                  ...prev,
+                  Clearable: data.checked,
+                }));
               }}
             />
           </Form.Field>
@@ -76,8 +82,9 @@ function Options(props) {
             <Checkbox
               label="Basic"
               value="Basic"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Basic: e.target.value }));
+              check={valuePro.Basic}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({ ...prev, Basic: data.checked }));
               }}
             />
           </Form.Field>
@@ -87,8 +94,12 @@ function Options(props) {
             <Checkbox
               label="Circular"
               value="Circular"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Circular: e.target.value }));
+              check={valuePro.Circular}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({
+                  ...prev,
+                  Circular: data.checked,
+                }));
               }}
             />
           </Form.Field>
@@ -98,8 +109,9 @@ function Options(props) {
             <Checkbox
               label="Corner"
               value="Corner"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Corner: e.target.value }));
+              check={valuePro.Corner}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({ ...prev, Corner: data.checked }));
               }}
             />
           </Form.Field>
@@ -109,8 +121,12 @@ function Options(props) {
             <Checkbox
               label="Floating"
               value="Floating"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Floating: e.target.value }));
+              check={valuePro.Floating}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({
+                  ...prev,
+                  Floating: data.checked,
+                }));
               }}
             />
           </Form.Field>
@@ -120,8 +136,12 @@ function Options(props) {
             <Checkbox
               label="Pointing"
               value="Pointing"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Pointing: e.target.value }));
+              check={valuePro.Pointing}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({
+                  ...prev,
+                  Pointing: data.checked,
+                }));
               }}
             />
           </Form.Field>
@@ -131,8 +151,9 @@ function Options(props) {
             <Checkbox
               label="Compact"
               value="Compact"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Compact: e.target.value }));
+              check={valuePro.Compact}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({ ...prev, Compact: data.checked }));
               }}
             />
           </Form.Field>
@@ -146,8 +167,12 @@ function Options(props) {
             <Checkbox
               label="Disabled"
               value="Disabled"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Disabled: e.target.value }));
+              check={valuePro.Disabled}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({
+                  ...prev,
+                  Disabled: data.checked,
+                }));
               }}
             />
           </Form.Field>
@@ -157,10 +182,11 @@ function Options(props) {
             <Checkbox
               label="Transparent"
               value="Transparent"
-              onChange={(e) => {
+              check={valuePro.Transparent}
+              onChange={(e, data) => {
                 setValuePro((prev) => ({
                   ...prev,
-                  Transparent: e.target.value,
+                  Transparent: data.checked,
                 }));
               }}
             />
@@ -173,8 +199,9 @@ function Options(props) {
             <Checkbox
               label="Fluid"
               value="Fluid"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Fluid: e.target.value }));
+              check={valuePro.Fluid}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({ ...prev, Fluid: data.checked }));
               }}
             />
           </Form.Field>
@@ -184,8 +211,9 @@ function Options(props) {
             <Checkbox
               label="Link"
               value="Link"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Link: e.target.value }));
+              check={valuePro.Link}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({ ...prev, Link: data.checked }));
               }}
             />
           </Form.Field>
@@ -195,8 +223,9 @@ function Options(props) {
             <Checkbox
               label="Primary"
               value="Primary"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Primary: e.target.value }));
+              check={valuePro.Primary}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({ ...prev, Primary: data.checked }));
               }}
             />
           </Form.Field>
@@ -206,8 +235,12 @@ function Options(props) {
             <Checkbox
               label="Secondary"
               value="Secondary"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Secondary: e.target.value }));
+              check={valuePro.Secondary}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({
+                  ...prev,
+                  Secondary: data.checked,
+                }));
               }}
             />
           </Form.Field>
@@ -217,8 +250,12 @@ function Options(props) {
             <Checkbox
               label="Selection"
               value="Selection"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Selection: e.target.value }));
+              check={valuePro.Selection}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({
+                  ...prev,
+                  Selection: data.checked,
+                }));
               }}
             />
           </Form.Field>
@@ -228,8 +265,9 @@ function Options(props) {
             <Checkbox
               label="Fitted"
               value="Fitted"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Fitted: e.target.value }));
+              check={valuePro.Fitted}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({ ...prev, Fitted: data.checked }));
               }}
             />
           </Form.Field>
@@ -239,10 +277,11 @@ function Options(props) {
             <Checkbox
               label="Indeterminate"
               value="Indeterminate"
-              onChange={(e) => {
+              check={valuePro.Indeterminate}
+              onChange={(e, data) => {
                 setValuePro((prev) => ({
                   ...prev,
-                  Indeterminate: e.target.value,
+                  Indeterminate: data.checked,
                 }));
               }}
             />
@@ -256,8 +295,12 @@ function Options(props) {
             <Checkbox
               label="Read only"
               value="Read only"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, ReadOnly: e.target.value }));
+              check={valuePro.ReadOnly}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({
+                  ...prev,
+                  ReadOnly: data.checked,
+                }));
               }}
             />
           </Form.Field>
@@ -267,8 +310,9 @@ function Options(props) {
             <Checkbox
               label="Slider"
               value="Slider"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Slider: e.target.value }));
+              check={valuePro.Slider}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({ ...prev, Slider: data.checked }));
               }}
             />
           </Form.Field>
@@ -278,8 +322,9 @@ function Options(props) {
             <Checkbox
               label="Toggle"
               value="Toggle"
-              onChange={(e) => {
-                setValuePro((prev) => ({ ...prev, Toggle: e.target.value }));
+              check={valuePro.Toggle}
+              onChange={(e, data) => {
+                setValuePro((prev) => ({ ...prev, Toggle: data.checked }));
               }}
             />
           </Form.Field>

@@ -1,4 +1,6 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { updateGeneralPro } from "../../../../../features/builder/GeneralProperties.js";
 
 import General from "./General";
 
@@ -6,6 +8,8 @@ function GeneralLayout() {
   //----------------------------------------------------------
   // Base on nameToolbox dropped => Choose properties need to display on general tab
   //----------------------------------------------------------
+  const dispatch = useDispatch();
+
   const itemTBGen = useSelector((state) => state.itemTBGeneral.value);
 
   switch (itemTBGen) {

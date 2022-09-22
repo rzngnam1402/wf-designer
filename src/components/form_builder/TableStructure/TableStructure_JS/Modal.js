@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { Modal, Button } from "semantic-ui-react";
 
+import "../TableStructure_CSS/Modal.css";
+
 import PropertiesTables from "./PropertiesTables";
 
 import { updateModal } from "../../../../features/builder/CheckModal.js";
@@ -44,15 +46,16 @@ function ModalExampleDimmer() {
           <Modal
             dimmer="inverted"
             open={checkCancelSave}
+            size="tiny"
             onClose={() => {
               dispatch(updateCancelSave(false));
             }}
           >
             {/* //Content in Model inside */}
-            <div>
-              <Modal.Header>Question</Modal.Header>
-              <Modal.Content>Close without save?</Modal.Content>
-              <Modal.Actions>
+            <div className="secondModal">
+              <div className="secondModal_header">Question</div>
+              <div className="secondModal_content">Close without save?</div>
+              <div className="secondModal_footer">
                 <Button
                   primary
                   onClick={() => {
@@ -77,7 +80,7 @@ function ModalExampleDimmer() {
                 >
                   Cancel
                 </Button>
-              </Modal.Actions>
+              </div>
             </div>
             {/* //End content */}
           </Modal>

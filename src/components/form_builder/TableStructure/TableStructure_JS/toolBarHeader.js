@@ -2,13 +2,12 @@ import { useSelector, useDispatch } from "react-redux";
 
 import "../TableStructure_CSS/toolBarHeader.css";
 
-import CheckModal, {
-  updateModal,
-} from "../../../../features/builder/CheckModal.js";
+import { updateModal } from "../../../../features/builder/CheckModal.js";
 import { updateItemTBGeneral } from "../../../../features/builder/ItemToolboxGeneral.js";
 import { updateNode } from "../../../../features/builder/ObjectTotalNode.js";
 import { incrementDropzone } from "../../../../features/builder/ONDropzoneBorn.js";
 import { updateGeneralPro } from "../../../../features/builder/GeneralProperties";
+import { updateAllGenPro } from "../../../../features/builder/AllGenProperties.js";
 
 function ToolBarHeader(props) {
   // --------------------------------------------------------------------
@@ -18,9 +17,12 @@ function ToolBarHeader(props) {
 
   const dropzoneBorn = useSelector((state) => state.dropzoneBorn.value);
   const totalNode = useSelector((state) => state.totalNode.value);
+  const allGenPro = useSelector((state) => state.allGenPro.value);
 
   var OrderDropzoneBorn = dropzoneBorn;
+
   const totalObject = JSON.parse(JSON.stringify(totalNode));
+  const allGenObject = JSON.parse(JSON.stringify(allGenPro));
 
   const deleteObject = (array, birth, level) => {
     let indexNode = 0;
@@ -30,6 +32,7 @@ function ToolBarHeader(props) {
 
       // Neu tim ra Object
       if (ele.dopzoneCurrent.birthOrder === birth) {
+        deleteGenObject(ele.children, birth);
         return array.splice(indexNode - 1, 1);
       } else {
         if (ele.children !== []) {
@@ -39,7 +42,28 @@ function ToolBarHeader(props) {
         }
       }
     });
+
     return array;
+  };
+
+  const deleteGenObject = (arr, birth) => {
+    // allGenObject[birth] = {};
+    delete allGenObject[birth];
+
+    subDeleteGenObject(arr);
+
+    dispatch(updateAllGenPro({ ...allGenObject }));
+  };
+
+  const subDeleteGenObject = (arr) => {
+    arr.forEach((ele) => {
+      let birth = ele.dopzoneCurrent.birthOrder;
+      if (ele.children !== []) {
+        subDeleteGenObject(ele.children);
+      }
+      // allGenObject[birth] = {};
+      delete allGenObject[birth];
+    });
   };
 
   const copyObject = (array, birth, level) => {
@@ -121,6 +145,8 @@ function ToolBarHeader(props) {
               level: props.level,
             })
           );
+
+          dispatch(updateGeneralPro(allGenPro[props.orderNumber]));
 
           dispatch(updateItemTBGeneral(props.nameItemToolbox));
         }}

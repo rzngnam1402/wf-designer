@@ -1,12 +1,16 @@
 import ItemContent from "./ItemContent";
 
+import "../form_builder_CSS/dropComponentUI.css";
+
 function DropComponentUI({ nodes, preview }) {
-  console.log("node checking", nodes);
   return (
     <>
       {nodes.map((objectNode) => {
         return (
-          <div key={objectNode.dopzoneCurrent.birthOrder}>
+          <div
+            key={objectNode.dopzoneCurrent.birthOrder}
+            className={preview ? "preview_item" : ""}
+          >
             <ItemContent
               level={objectNode.dopzoneCurrent.level}
               birthOrder={objectNode.dopzoneCurrent.birthOrder}

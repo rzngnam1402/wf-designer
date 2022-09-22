@@ -1,0 +1,23 @@
+.secondModal {
+  /* width: 500px; */
+}
+
+.secondModal_header {
+  border-bottom: 1px solid rgba(34, 36, 38, 0.15);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  height: 59px;
+  line-height: 24px;
+  padding: 17.5px 21px;
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.secondModal_content {
+  padding: 21px;
+}
+
+.secondModal_footer {
+  padding: 14px;
+  text-align: right;
+}

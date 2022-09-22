@@ -22,6 +22,7 @@ function ChildrenContainerView(props) {
       ? allGenPro[orderBirth].ChildrenContainerView || "None"
       : "None"
   );
+
   useEffect(() => {
     if (props.keyId) {
       let tempObj = { ChildrenContainerView: stateCheckbox };

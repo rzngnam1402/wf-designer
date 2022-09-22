@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { Form } from "semantic-ui-react";
 
 import { updateGeneralPro } from "../../../../../../features/builder/GeneralProperties";
@@ -15,8 +15,10 @@ function Name(props) {
   var GenPro = JSON.parse(JSON.stringify(GeneralPro));
   var orderBirth = CheckOpen.orderBirth;
 
+  console.log("GenPro Name Start", GenPro);
+
   const [valuePro, setValuePro] = useState(
-    allGenPro[orderBirth] ? allGenPro[orderBirth].Name || "" : ""
+    allGenPro[orderBirth] ? allGenPro[orderBirth].Name || "Default" : "Default"
   );
 
   useEffect(() => {
@@ -33,6 +35,7 @@ function Name(props) {
 
   return (
     <Form.Field>
+      {console.log("GenPro Name", GenPro)}
       <label className="Ganeral_label">Name</label>
       <input
         placeholder="Name"

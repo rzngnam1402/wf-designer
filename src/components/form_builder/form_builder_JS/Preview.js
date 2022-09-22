@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
 
+import "../form_builder_CSS/Preview.css";
+
 import DropComponentUI from "./dropComponentUI";
 
 function Preview() {
@@ -7,10 +9,10 @@ function Preview() {
 
   return (
     <>
-      <div>
-        <h1>Day la Preview</h1>
+      <div className="titlePreview">
+        <h1>Preview</h1>
       </div>
-      <div>
+      <div className="bodyPreview">
         <DropComponentUI nodes={totalNode} preview={true} />
       </div>
     </>
