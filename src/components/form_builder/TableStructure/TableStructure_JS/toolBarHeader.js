@@ -2,11 +2,13 @@ import { useSelector, useDispatch } from "react-redux";
 
 import "../TableStructure_CSS/toolBarHeader.css";
 
-import { updateModal } from "../../../../features/builder/CheckModal.js";
-import { updateSave } from "../../../../features/builder/ButtonSave.js";
+import CheckModal, {
+  updateModal,
+} from "../../../../features/builder/CheckModal.js";
 import { updateItemTBGeneral } from "../../../../features/builder/ItemToolboxGeneral.js";
 import { updateNode } from "../../../../features/builder/ObjectTotalNode.js";
 import { incrementDropzone } from "../../../../features/builder/ONDropzoneBorn.js";
+import { updateGeneralPro } from "../../../../features/builder/GeneralProperties";
 
 function ToolBarHeader(props) {
   // --------------------------------------------------------------------
@@ -14,9 +16,6 @@ function ToolBarHeader(props) {
   // --------------------------------------------------------------------
   const dispatch = useDispatch();
 
-  const CheckOpen = useSelector((state) => state.checkModal.value);
-  // const checkSave = useSelector((state) => state.btnSave.value);
-  const itemTBGen = useSelector((state) => state.itemTBGeneral.value);
   const dropzoneBorn = useSelector((state) => state.dropzoneBorn.value);
   const totalNode = useSelector((state) => state.totalNode.value);
 
@@ -113,6 +112,7 @@ function ToolBarHeader(props) {
       <i
         className="fa-solid fa-pen-to-square"
         onClick={() => {
+          dispatch(updateGeneralPro({}));
           dispatch(
             updateModal({
               check: true,

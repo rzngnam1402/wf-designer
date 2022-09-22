@@ -1,34 +1,57 @@
-import { useEffect, useState, useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { useEffect, useState } from "react";
 import { Form, Checkbox } from "semantic-ui-react";
 
-import { BtnSave } from "../../../../form_builder_Provider/idItemProvider";
-import { GeneralProperties } from "../../../../form_builder_Provider/idItemProvider";
+import { updateSave } from "../../../../../../features/builder/ButtonSave.js";
+import { updateGeneralPro } from "../../../../../../features/builder/GeneralProperties";
 
 function GroupDirection(props) {
-  const [stateCheckbox, setStateCheckbox] = useState("Left");
+  const dispatch = useDispatch();
 
-  const [valuePro, setValuePro] = useState("None");
+  const checkSave = useSelector((state) => state.btnSave.value);
+  const CheckOpen = useSelector((state) => state.checkModal.value);
+  const GeneralPro = useSelector((state) => state.generalPro.value);
 
-  const ProSave = useContext(BtnSave);
-  const Proper = useContext(GeneralProperties);
+  var GenPro = JSON.parse(JSON.stringify(GeneralPro));
+  var orderBirth = CheckOpen.orderBirth;
+
+  const [stateCheckbox, setStateCheckbox] = useState(
+    GenPro[orderBirth] ? GenPro[orderBirth].GroupDirection || "Left" : "Left"
+  );
+
+  const [valuePro, setValuePro] = useState(
+    GenPro[orderBirth]
+      ? GenPro[orderBirth].GroupDirectionReadOnly || "None"
+      : "None"
+  );
 
   useEffect(() => {
     if (props.keyId !== false) {
       if (valuePro === true) {
-        Proper.SetValueProperties((prev) => ({
-          ...prev,
+        let tempObj_1 = {
           GroupDirection: stateCheckbox,
           GroupDirectionReadOnly: true,
-        }));
+        };
+        GenPro[orderBirth]
+          ? (GenPro[orderBirth] = { ...GenPro[orderBirth], ...tempObj_1 })
+          : (GenPro = { ...GenPro, [orderBirth]: tempObj_1 });
+
+        dispatch(updateGeneralPro({ ...GenPro }));
       } else {
-        Proper.SetValueProperties((prev) => ({
-          ...prev,
+        let tempObj_2 = {
           GroupDirection: stateCheckbox,
           GroupDirectionReadOnly: false,
-        }));
+        };
+        GenPro[orderBirth]
+          ? (GenPro[orderBirth] = { ...GenPro[orderBirth], ...tempObj_2 })
+          : (GenPro = { ...GenPro, [orderBirth]: tempObj_2 });
+
+        dispatch(updateGeneralPro({ ...GenPro }));
       }
     }
-  }, [ProSave.save]);
+    // dispatch(updateSave(false));
+  }, [checkSave]);
 
   return (
     <Form.Field>

@@ -1,43 +1,52 @@
-import FormBuilder from "./components/form_builder/form_builder_JS/formBuilder";
-import Preview from "./components/form_builder/form_builder_JS/Preview";
+import { useState, useEffect } from "react";
+
 import { Button } from "semantic-ui-react";
+
 import $ from "jquery";
 
-import FormJson from "./components/form_builder/form_builder_JS/FormJson";
-
 import "./App.css";
-import { useEffect } from "react";
-import { useState } from "react";
+
+import Preview from "./components/form_builder/form_builder_JS/Preview";
+import FormJson from "./components/form_builder/form_builder_JS/FormJson";
+import FormBuilder from "./components/form_builder/form_builder_JS/formBuilder";
+import FormJsonGenPro from "./components/form_builder/form_builder_JS/FormJson_GenPro";
 
 function App() {
   const [render, setRender] = useState("");
 
   useEffect(() => {
+    const switchPage = $(".switchPage");
+
     const formBuilder = $(".FormBuilder");
     const preview = $(".Preview");
     const formJson = $(".FormJson");
+    const formJsonGenPro = $(".FormJsonGenPro");
+
+    for (const ele of switchPage) {
+      ele.classList.add("None_Display");
+    }
 
     switch (render) {
       case "formBuilder":
         formBuilder[0].classList.remove("None_Display");
-        preview[0].classList.add("None_Display");
-        formJson[0].classList.add("None_Display");
         formBuilder[0].classList.add("Display_Content");
         break;
       case "preview":
-        formBuilder[0].classList.add("None_Display");
         preview[0].classList.remove("None_Display");
-        formJson[0].classList.add("None_Display");
         preview[0].classList.add("Display_Content");
         break;
       case "formJson":
-        formBuilder[0].classList.add("None_Display");
-        preview[0].classList.add("None_Display");
         formJson[0].classList.remove("None_Display");
         formJson[0].classList.add("Display_Content");
         break;
+      case "formJsonGenPro":
+        formJsonGenPro[0].classList.remove("None_Display");
+        formJsonGenPro[0].classList.add("Display_Content");
+        break;
 
       default:
+        formBuilder[0].classList.remove("None_Display");
+        formBuilder[0].classList.add("Display_Content");
         break;
     }
   }, [render]);
@@ -69,15 +78,26 @@ function App() {
         >
           FormJson
         </Button>
+        <Button
+          primary
+          onClick={() => {
+            setRender("formJsonGenPro");
+          }}
+        >
+          FormJsonGenPro
+        </Button>
       </div>
-      <div className={"FormBuilder Display_Content"}>
+      <div className={"switchPage FormBuilder"}>
         <FormBuilder />
       </div>
-      <div className={"Preview None_Display"}>
+      <div className={"switchPage Preview "}>
         <Preview />
       </div>
-      <div className={"FormJson None_Display"}>
+      <div className={"switchPage FormJson"}>
         <FormJson />
+      </div>
+      <div className={"switchPage FormJsonGenPro"}>
+        <FormJsonGenPro />
       </div>
     </div>
   );

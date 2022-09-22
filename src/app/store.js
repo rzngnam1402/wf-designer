@@ -8,6 +8,7 @@ import btnCancelSaveReducer from "../features/builder/ButtonCancelSave.js";
 import itemTBGeneralReducer from "../features/builder/ItemToolboxGeneral.js";
 import generalProReducer from "../features/builder/GeneralProperties.js";
 import objectProReducer from "../features/builder/ObjectProperties.js";
+import allGenProReducer from "../features/builder/AllGenProperties";
 
 export default configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export default configureStore({
     itemTBGeneral: itemTBGeneralReducer,
     generalPro: generalProReducer,
     objectPro: objectProReducer,
+    allGenPro: allGenProReducer,
   },
 });

@@ -1,25 +1,37 @@
-import { useEffect, useState, useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { useEffect, useState } from "react";
 import { Form, Checkbox } from "semantic-ui-react";
 
-import { BtnSave } from "../../../../form_builder_Provider/idItemProvider";
-import { GeneralProperties } from "../../../../form_builder_Provider/idItemProvider";
+import { updateGeneralPro } from "../../../../../../features/builder/GeneralProperties";
 
 import ChildrenContainerView_support from "./ChildrenContainerView_support";
 
 function ChildrenContainerView(props) {
-  const [stateCheckbox, setStateCheckbox] = useState("None");
+  const dispatch = useDispatch();
 
-  const ProSave = useContext(BtnSave);
-  const Proper = useContext(GeneralProperties);
+  const CheckOpen = useSelector((state) => state.checkModal.value);
+  const GeneralPro = useSelector((state) => state.generalPro.value);
+  const allGenPro = useSelector((state) => state.allGenPro.value);
 
+  var GenPro = JSON.parse(JSON.stringify(GeneralPro));
+  var orderBirth = CheckOpen.orderBirth;
+
+  const [stateCheckbox, setStateCheckbox] = useState(
+    allGenPro[orderBirth]
+      ? allGenPro[orderBirth].ChildrenContainerView || "None"
+      : "None"
+  );
   useEffect(() => {
-    if (props.keyId !== false) {
-      Proper.SetValueProperties((prev) => ({
-        ...prev,
-        ChildrenContainerView: stateCheckbox,
-      }));
+    if (props.keyId) {
+      let tempObj = { ChildrenContainerView: stateCheckbox };
+
+      GenPro = { ...GenPro, ...tempObj };
+
+      dispatch(updateGeneralPro({ ...GenPro }));
     }
-  }, [ProSave.save]);
+    // dispatch(updateSave(false));
+  }, [stateCheckbox]);
 
   return (
     <>
@@ -69,7 +81,7 @@ function ChildrenContainerView(props) {
 
       <ChildrenContainerView_support
         ValueSelect={stateCheckbox}
-        key={props.keyId}
+        keyId={props.keyId}
       />
     </>
   );

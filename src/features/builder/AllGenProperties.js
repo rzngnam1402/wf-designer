@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const generalProSlice = createSlice({
-  name: "generalPro",
+export const allGenProSlice = createSlice({
+  name: "allGenPro",
   initialState: {
     value: {},
   },
   reducers: {
-    updateGeneralPro: (state, action) => {
+    updateAllGenPro: (state, action) => {
       state.value = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { updateGeneralPro } = generalProSlice.actions;
+export const { updateAllGenPro } = allGenProSlice.actions;
 
-export default generalProSlice.reducer;
+export default allGenProSlice.reducer;

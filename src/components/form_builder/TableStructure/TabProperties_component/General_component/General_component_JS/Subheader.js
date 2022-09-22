@@ -1,20 +1,38 @@
-import { useEffect, useState, useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { useEffect, useState } from "react";
 import { Form } from "semantic-ui-react";
 
-import { BtnSave } from "../../../../form_builder_Provider/idItemProvider";
-import { GeneralProperties } from "../../../../form_builder_Provider/idItemProvider";
+import { updateSave } from "../../../../../../features/builder/ButtonSave.js";
+import { updateGeneralPro } from "../../../../../../features/builder/GeneralProperties";
 
 function Subheader(props) {
-  const [valuePro, setValuePro] = useState("");
+  const dispatch = useDispatch();
 
-  const ProSave = useContext(BtnSave);
-  const Proper = useContext(GeneralProperties);
+  const checkSave = useSelector((state) => state.btnSave.value);
+  const CheckOpen = useSelector((state) => state.checkModal.value);
+  const GeneralPro = useSelector((state) => state.generalPro.value);
+
+  var GenPro = JSON.parse(JSON.stringify(GeneralPro));
+  var orderBirth = CheckOpen.orderBirth;
+
+  const [valuePro, setValuePro] = useState(
+    GenPro[orderBirth] ? GenPro[orderBirth].Subheader || "" : ""
+  );
 
   useEffect(() => {
-    if (props.keyId !== false) {
-      Proper.SetValueProperties((prev) => ({ ...prev, Subheader: valuePro }));
+    if (props.keyId) {
+      let tempObj = { Subheader: valuePro };
+
+      GenPro[orderBirth]
+        ? (GenPro[orderBirth] = { ...GenPro[orderBirth], ...tempObj })
+        : (GenPro = { ...GenPro, [orderBirth]: tempObj });
+
+      dispatch(updateGeneralPro({ ...GenPro }));
     }
-  }, [ProSave.save]);
+
+    // dispatch(updateSave(false));
+  }, [checkSave]);
 
   return (
     <Form.Field>

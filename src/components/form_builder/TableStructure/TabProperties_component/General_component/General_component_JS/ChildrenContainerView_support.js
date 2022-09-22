@@ -1,35 +1,53 @@
-import { useEffect, useState, useContext } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { useEffect, useState } from "react";
 import { Dropdown, Form, TextArea } from "semantic-ui-react";
 
-import { BtnSave } from "../../../../form_builder_Provider/idItemProvider";
-import { GeneralProperties } from "../../../../form_builder_Provider/idItemProvider";
+import { updateGeneralPro } from "../../../../../../features/builder/GeneralProperties";
 
 import "../General_component_CSS/ChildContainerView_support.css";
 
 function ChildrenContainerView_support({ ValueSelect, keyId }) {
-  const [valuePro_1, setValuePro_1] = useState("Not set");
-  const [valuePro_2, setValuePro_2] = useState("None");
-  const [valuePro_3, setValuePro_3] = useState();
+  const dispatch = useDispatch();
 
-  const ProSave = useContext(BtnSave);
-  const Proper = useContext(GeneralProperties);
+  const CheckOpen = useSelector((state) => state.checkModal.value);
+  const GeneralPro = useSelector((state) => state.generalPro.value);
+  const allGenPro = useSelector((state) => state.allGenPro.value);
+
+  var GenPro = JSON.parse(JSON.stringify(GeneralPro));
+  var orderBirth = CheckOpen.orderBirth;
+
+  const [valuePro_1, setValuePro_1] = useState(
+    allGenPro[orderBirth]
+      ? allGenPro[orderBirth].display || "Not set"
+      : "Not set"
+  );
+  const [valuePro_2, setValuePro_2] = useState(
+    allGenPro[orderBirth] ? allGenPro[orderBirth].float || "None" : "None"
+  );
+  const [valuePro_3, setValuePro_3] = useState(
+    allGenPro[orderBirth]
+      ? allGenPro[orderBirth].ChildrenContainerStyle || ""
+      : ""
+  );
 
   useEffect(() => {
-    if (keyId !== false) {
+    if (keyId) {
       if (ValueSelect === "None") {
-        Proper.SetValueProperties((prev) => ({
-          ...prev,
-          display: valuePro_1,
-          float: valuePro_2,
-        }));
+        let tempObj_1 = { display: valuePro_1, float: valuePro_2 };
+
+        GenPro = { ...GenPro, ...tempObj_1 };
+
+        dispatch(updateGeneralPro({ ...GenPro }));
       } else {
-        Proper.SetValueProperties((prev) => ({
-          ...prev,
-          ChildrenContainerStyle: valuePro_3,
-        }));
+        let tempObj_2 = { ChildrenContainerStyle: valuePro_3 };
+
+        GenPro = { ...GenPro, ...tempObj_2 };
+
+        dispatch(updateGeneralPro({ ...GenPro }));
       }
     }
-  }, [ProSave.save]);
+  }, [valuePro_1, valuePro_2, valuePro_3]);
 
   const options_display = [
     { key: "1", text: "(Not set)", value: "Not set" },
@@ -70,8 +88,8 @@ function ChildrenContainerView_support({ ValueSelect, keyId }) {
                 selection
                 options={options_display}
                 value={valuePro_1}
-                onChange={(e) => {
-                  setValuePro_1(e.target.value);
+                onChange={(e, { value }) => {
+                  setValuePro_1(value);
                 }}
               />
             </Form.Field>
@@ -83,8 +101,8 @@ function ChildrenContainerView_support({ ValueSelect, keyId }) {
                 selection
                 options={options_float}
                 value={valuePro_2}
-                onChange={(e) => {
-                  setValuePro_2(e.target.value);
+                onChange={(e, { value }) => {
+                  setValuePro_2(value);
                 }}
               />
             </Form.Field>

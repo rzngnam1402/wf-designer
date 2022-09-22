@@ -3,20 +3,33 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Form } from "semantic-ui-react";
 
-import { updateSave } from "../../../../../../features/builder/ButtonSave.js";
 import { updateGeneralPro } from "../../../../../../features/builder/GeneralProperties";
 
 function Name(props) {
   const dispatch = useDispatch();
 
-  const checkSave = useSelector((state) => state.btnSave.value);
+  const CheckOpen = useSelector((state) => state.checkModal.value);
+  const GeneralPro = useSelector((state) => state.generalPro.value);
+  const allGenPro = useSelector((state) => state.allGenPro.value);
 
-  const [valuePro, setValuePro] = useState("");
+  var GenPro = JSON.parse(JSON.stringify(GeneralPro));
+  var orderBirth = CheckOpen.orderBirth;
+
+  const [valuePro, setValuePro] = useState(
+    allGenPro[orderBirth] ? allGenPro[orderBirth].Name || "" : ""
+  );
 
   useEffect(() => {
     if (props.keyId) {
+      let tempObj = { Name: valuePro };
+
+      GenPro = { ...GenPro, ...tempObj };
+
+      dispatch(updateGeneralPro({ ...GenPro }));
     }
-  }, [checkSave]);
+
+    // dispatch(updateSave(false));
+  }, [valuePro]);
 
   return (
     <Form.Field>
