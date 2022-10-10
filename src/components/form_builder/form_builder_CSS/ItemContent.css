@@ -1,22 +1,28 @@
 .ItemContent_containers,
 .ItemContent_Controls {
-  position: relative;
+    position: relative;
 }
 
 .ItemContent_Controls {
-  text-align: left;
+    text-align: left;
 }
 
 .ItemContent_Controls_header {
-  text-align: center;
+    text-align: center;
 }
 
 .ItemContent_container {
-  width: 100%;
-  opacity: 1;
-  text-align: center;
-  background-color: #f4f4f4;
-  border: 1px solid rgba(18, 98, 226, 0.5);
-  padding: 16px;
-  margin-bottom: 16px;
+    width: 100%;
+    opacity: 1;
+    text-align: center;
+    background-color: #f4f4f4;
+    border: 1px solid rgba(18, 98, 226, 0.5);
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.gridLayoutItems {
+    background-color: white;
+    border: 1px dotted rgb(82, 82, 82);
+    padding: 0 10px;
 }

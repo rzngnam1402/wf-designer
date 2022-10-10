@@ -5,6 +5,9 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import store from "./app/store";
 
+// Globalstyles
+import GlobalStyles from "./components/GlobalStyles";
+
 // CSS
 import "./index.css";
 
@@ -17,7 +20,9 @@ import "semantic-ui-css/semantic.min.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Provider store={store}>
-    <App />
-  </Provider>
+    <GlobalStyles>
+        <Provider store={store}>
+            <App />
+        </Provider>
+    </GlobalStyles>
 );
